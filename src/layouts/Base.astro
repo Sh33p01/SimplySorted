@@ -1,0 +1,130 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site.js';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Set on the Home page only, so the org schema is declared exactly once. */
+  includeSchema?: boolean;
+}
+
+const { title, description, includeSchema = false } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+// LocalBusiness schema — helps Google and AI answer engines place her
+// correctly for "declutter Centurion" style local queries.
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${Astro.site}#business`,
+  name: site.name,
+  slogan: site.tagline,
+  description:
+    'Professional decluttering, downsizing and deceased estate support, pre-move packing and home staging in Centurion and Pretoria.',
+  url: Astro.site?.href,
+  email: site.email,
+  ...(site.phone.publish ? { telephone: site.phone.tel } : {}),
+  founder: {
+    '@type': 'Person',
+    name: site.owner,
+    jobTitle: site.role,
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.area.primary,
+    addressRegion: site.area.region,
+    addressCountry: site.area.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: site.geo.lat,
+    longitude: site.geo.lng,
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Centurion' },
+    { '@type': 'City', name: 'Pretoria' },
+  ],
+  knowsAbout: [
+    'Professional decluttering',
+    'Home organising',
+    'Downsizing',
+    'Deceased estate clearance',
+    'Pre-move packing',
+    'Home staging',
+  ],
+  ...(Object.values(site.social).some(Boolean)
+    ? { sameAs: Object.values(site.social).filter(Boolean) }
+    : {}),
+};
+---
+
+<!doctype html>
+<html lang="en-ZA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={canonical} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_ZA" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts: preconnect + swap so type never blocks first paint. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+    />
+
+    {includeSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Gentle reveal on scroll. Reduced-motion users get no-op CSS, so this
+      // only ever adds a class they cannot perceive.
+      const items = document.querySelectorAll('.reveal');
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+        );
+
+        items.forEach((item) => observer.observe(item));
+      } else {
+        items.forEach((item) => item.classList.add('is-visible'));
+      }
+    </script>
+  </body>
+</html>

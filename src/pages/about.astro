@@ -1,0 +1,214 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import PlaceholderImage from '../components/PlaceholderImage.astro';
+import { site } from '../data/site.js';
+
+const title = 'About Carolyn Kriel, Professional Organiser in Centurion | Simply Sorted';
+const description =
+  'Meet Carolyn Kriel, the professional organiser behind Simply Sorted. A calm, respectful, judgement-free approach to decluttering and organising homes across Centurion and Pretoria.';
+
+const values = [
+  {
+    title: 'Calm, never rushed',
+    text: 'We work at your pace. Decisions about your belongings deserve time, not pressure.',
+  },
+  {
+    title: 'Respect and discretion',
+    text: 'Your home and your history stay private. There is no judgement here — only help.',
+  },
+  {
+    title: 'Sensitivity when it matters',
+    text: 'Downsizing and estates are handled with dignity and patience, for as long as it takes.',
+  },
+  {
+    title: 'Systems that last',
+    text: 'Tailored to your daily habits, so your home stays organised long after we leave.',
+  },
+];
+---
+
+<Base title={title} description={description}>
+  {/* Founder-forward: people hire a person for in-home work, not a brand. */}
+  <section class="section intro">
+    <div class="container intro__inner">
+      <div class="intro__media reveal">
+        {/* TODO: replace with a warm, natural-light photo of Carolyn. */}
+        <PlaceholderImage
+          label="Photograph of Carolyn Kriel — warm, natural light, friendly and approachable"
+          ratio="4 / 5"
+          tone="mid"
+        />
+      </div>
+
+      <div class="intro__copy">
+        <p class="eyebrow">About us</p>
+        <h1 class="intro__title">Welcome to Simply Sorted.</h1>
+        <p class="intro__name">
+          <strong>{site.owner}</strong>
+          <span>{site.role} &middot; {site.area.label}</span>
+        </p>
+        <hr class="rule" />
+
+        <div class="prose">
+          <p>
+            Where we believe that a well-ordered home is the foundation for a
+            peaceful mind.
+          </p>
+          <p>
+            We have always had an innate passion for organizing, decluttering, and
+            transforming overwhelmed environments into harmonious sanctuaries. To us,
+            it’s about much more than just neat piles or matching bins, it’s about
+            breathing new life into your existing spaces, rethinking how you use every
+            square foot, and turning everyday chaos into calm, functional beauty.
+          </p>
+          <p>
+            Whether your closet is overflowing, your kitchen is crying out for a reset,
+            or an entire room needs a fresh start, we are here to partner with you.
+            Together, we will reclaim your space and create a tailored, beautiful
+            environment that feels effortless to maintain, allowing you to focus on
+            what truly matters.
+          </p>
+        </div>
+
+        <p class="intro__pull">Let’s turn your chaos into calm.</p>
+
+        <a href="/contact/" class="button intro__cta">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--raised">
+    <div class="container">
+      <div class="text-center values__head">
+        <p class="eyebrow">How we work</p>
+        <h2>What you can expect</h2>
+        <hr class="rule rule--center" />
+      </div>
+
+      <ul class="values">
+        {values.map((value) => (
+          <li class="value reveal">
+            <h3 class="value__title">{value.title}</h3>
+            <p class="value__text">{value.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Ready when you are."
+    text="Tell me a little about the space that's bothering you. No judgement, no pressure — just a friendly chat about what would help."
+    buttonLabel="Start the conversation"
+  />
+</Base>
+
+<style>
+  .intro {
+    padding-block-start: var(--space-xl);
+  }
+
+  .intro__inner {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: start;
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
+  .intro__media {
+    position: sticky;
+    top: 7rem;
+  }
+
+  .intro__title {
+    margin-block-start: var(--space-2xs);
+  }
+
+  .intro__name {
+    margin-block-start: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .intro__name strong {
+    font-size: var(--step-1);
+    font-weight: 600;
+  }
+
+  .intro__name span {
+    font-size: var(--step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .prose > * + * {
+    margin-block-start: var(--space-md);
+  }
+
+  .prose p {
+    font-size: var(--step-0);
+    line-height: 1.75;
+  }
+
+  .prose p:first-child {
+    font-size: var(--step-1);
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .intro__pull {
+    margin-block-start: var(--space-lg);
+    font-family: var(--font-heading);
+    font-size: var(--step-2);
+    font-style: italic;
+    color: var(--moss);
+  }
+
+  .intro__cta {
+    margin-block-start: var(--space-lg);
+  }
+
+  @media (max-width: 62rem) {
+    .intro__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .intro__media {
+      position: static;
+      max-width: 20rem;
+    }
+  }
+
+  /* --- Values --- */
+
+  .values__head {
+    margin-block-end: var(--space-xl);
+  }
+
+  .values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--space-lg) var(--space-md);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .value {
+    padding-inline-start: var(--space-md);
+    border-inline-start: 2px solid var(--sage);
+  }
+
+  .value__title {
+    font-size: var(--step-1);
+  }
+
+  .value__text {
+    margin-block-start: var(--space-xs);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+</style>

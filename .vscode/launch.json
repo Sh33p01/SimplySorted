@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // F5 -> starts the dev server, waits for it, opens the site.
+      // Edits to any file in src/ hot-reload in the browser on save.
+      "name": "Run Simply Sorted",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:4321",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "dev server",
+      "postDebugTask": "stop dev server",
+      "sourceMaps": true
+    },
+    {
+      // Same thing, if you prefer Chrome.
+      "name": "Run Simply Sorted (Chrome)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4321",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "dev server",
+      "postDebugTask": "stop dev server",
+      "sourceMaps": true
+    },
+    {
+      // Opens the browser only — use when the dev server is already running.
+      "name": "Open browser only",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:4321",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}

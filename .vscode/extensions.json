@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    // Syntax highlighting, IntelliSense and formatting for .astro files.
+    // Without this they render as plain text — install it first.
+    "astro-build.astro-vscode"
+  ]
+}

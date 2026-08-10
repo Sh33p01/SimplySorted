@@ -1,0 +1,475 @@
+---
+import { site, serviceOptions } from '../data/site.js';
+
+/**
+ * Enquiry form. Posts to Web3Forms, which emails the submission straight to
+ * Carolyn — no backend, no server to maintain.
+ *
+ * TODO(open decision): create the Web3Forms account against
+ * carolynkr007@gmail.com and paste the access key below. Until a real key is
+ * set the form validates normally but shows a "not connected yet" notice
+ * instead of pretending to send.
+ */
+const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_WEB3FORMS_ACCESS_KEY';
+const isConfigured = !WEB3FORMS_ACCESS_KEY.startsWith('REPLACE_WITH');
+
+interface Props {
+  /** 'card' is the boxed version beside the hero; 'page' is the Contact page. */
+  variant?: 'card' | 'page';
+  headingLevel?: 'h2' | 'h3';
+  id?: string;
+}
+
+const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro.props;
+---
+
+<div class:list={['form-wrap', `form-wrap--${variant}`]} id={id}>
+  <div class="form-head">
+    <Heading class="form-title">Contact us for organising &amp; decluttering services</Heading>
+    <p class="form-sub">
+      No judgement, no pressure — we work at your pace. I’ll reply {site.responseTime}.
+    </p>
+  </div>
+
+  <form class="form" data-enquiry-form novalidate>
+    <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+    <input type="hidden" name="subject" value="New enquiry from the Simply Sorted website" />
+    <input type="hidden" name="from_name" value="Simply Sorted website" />
+
+    {/* Honeypot — real people never see or fill this. */}
+    <div class="form-hp" aria-hidden="true">
+      <label for={`${id}-botcheck`}>Leave this field empty</label>
+      <input id={`${id}-botcheck`} type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="field">
+      <label for={`${id}-name`}>Full name <span class="req" aria-hidden="true">*</span></label>
+      <input
+        id={`${id}-name`}
+        name="name"
+        type="text"
+        autocomplete="name"
+        required
+        aria-describedby={`${id}-name-error`}
+      />
+      <p class="error" id={`${id}-name-error`} data-error-for="name" hidden></p>
+    </div>
+
+    <div class="field">
+      <label for={`${id}-email`}>Email <span class="req" aria-hidden="true">*</span></label>
+      <input
+        id={`${id}-email`}
+        name="email"
+        type="email"
+        inputmode="email"
+        autocomplete="email"
+        required
+        aria-describedby={`${id}-email-error`}
+      />
+      <p class="error" id={`${id}-email-error`} data-error-for="email" hidden></p>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for={`${id}-phone`}>
+          Contact number <span class="optional">(optional)</span>
+        </label>
+        <input
+          id={`${id}-phone`}
+          name="phone"
+          type="tel"
+          inputmode="tel"
+          autocomplete="tel"
+          aria-describedby={`${id}-phone-error`}
+        />
+        <p class="error" id={`${id}-phone-error`} data-error-for="phone" hidden></p>
+      </div>
+
+      <div class="field">
+        <label for={`${id}-suburb`}>Suburb / area <span class="req" aria-hidden="true">*</span></label>
+        <input
+          id={`${id}-suburb`}
+          name="suburb"
+          type="text"
+          autocomplete="address-level2"
+          placeholder="e.g. Eldoraigne, Centurion"
+          required
+          aria-describedby={`${id}-suburb-error`}
+        />
+        <p class="error" id={`${id}-suburb-error`} data-error-for="suburb" hidden></p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for={`${id}-service`}>Which service are you interested in?</label>
+      <select id={`${id}-service`} name="service">
+        <option value="">Please choose…</option>
+        {serviceOptions.map((option) => (
+          <option value={option}>{option}</option>
+        ))}
+      </select>
+    </div>
+
+    <div class="field">
+      <label for={`${id}-message`}>How can I help?</label>
+      <textarea
+        id={`${id}-message`}
+        name="message"
+        rows={variant === 'card' ? 3 : 5}
+        placeholder="Tell me a little about the space you'd like sorted."
+      ></textarea>
+    </div>
+
+    <button type="submit" class="button form-submit" data-submit>
+      <span data-submit-label>Send my enquiry</span>
+    </button>
+
+    {!isConfigured && (
+      <p class="form-notice">
+        <strong>Setup pending:</strong> add the Web3Forms access key in
+        <code>src/components/EnquiryForm.astro</code> to start delivering enquiries
+        to {site.email}.
+      </p>
+    )}
+
+    {/* Announced to screen readers the moment submission resolves. */}
+    <p class="form-status" role="status" aria-live="polite" data-status hidden></p>
+
+    <p class="form-alt">
+      Prefer email? Write to <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
+  </form>
+
+  {/* Replaces the form on success, so the confirmation is impossible to miss. */}
+  <div class="form-success" data-success hidden>
+    <svg viewBox="0 0 48 48" class="form-success__icon" aria-hidden="true" focusable="false">
+      <circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="2" opacity="0.35" />
+      <path d="M15 24.5l6.5 6.5L33 19" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <h3 class="form-success__title">Thank you — your message is on its way.</h3>
+    <p class="form-success__text">
+      I’ve got your details and will reply {site.responseTime}.
+      If it’s urgent, email me directly at <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
+  </div>
+</div>
+
+<style>
+  .form-wrap {
+    background-color: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    box-shadow: var(--shadow-md);
+  }
+
+  .form-wrap--page {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .form-head {
+    margin-block-end: var(--space-md);
+  }
+
+  .form-title {
+    font-size: var(--step-1);
+    letter-spacing: 0.02em;
+  }
+
+  .form-sub {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  /* Single column on the card variant and on all small screens — multi-column
+     forms measurably underperform. Phone + suburb pair only when there's room. */
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+  }
+
+  .form-wrap--card .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 34rem) {
+    .field-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  label {
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .req {
+    color: var(--moss);
+  }
+
+  .optional {
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    /* 3rem min height keeps tap targets comfortable on mobile. */
+    min-height: 3rem;
+    padding: 0.7rem 0.9rem;
+    background-color: var(--white);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    font-size: var(--step-0);
+    transition: border-color var(--duration) var(--ease),
+                box-shadow var(--duration) var(--ease);
+  }
+
+  textarea {
+    resize: vertical;
+    line-height: 1.55;
+  }
+
+  input:hover,
+  select:hover,
+  textarea:hover {
+    border-color: var(--moss);
+  }
+
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--evergreen);
+    outline-offset: 1px;
+    border-color: var(--evergreen);
+  }
+
+  input[aria-invalid='true'],
+  textarea[aria-invalid='true'] {
+    border-color: var(--error);
+  }
+
+  .error {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--error);
+  }
+
+  .form-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .form-submit {
+    margin-block-start: var(--space-2xs);
+    width: 100%;
+  }
+
+  .form-submit[disabled] {
+    opacity: 0.7;
+    cursor: progress;
+  }
+
+  .form-notice {
+    margin: 0;
+    padding: var(--space-xs) var(--space-sm);
+    background-color: var(--sand);
+    border-radius: var(--radius);
+    font-size: var(--step--1);
+    color: var(--text);
+  }
+
+  .form-notice code {
+    font-size: 0.9em;
+    word-break: break-all;
+  }
+
+  .form-status {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--error);
+  }
+
+  .form-alt {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .form-success {
+    text-align: center;
+    padding-block: var(--space-md);
+    color: var(--evergreen);
+  }
+
+  .form-success__icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto var(--space-sm);
+    color: var(--moss);
+  }
+
+  .form-success__title {
+    font-size: var(--step-2);
+  }
+
+  .form-success__text {
+    margin: var(--space-xs) auto 0;
+    max-width: 42ch;
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+</style>
+
+<script>
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  type Rule = { message: string; test: (value: string) => boolean };
+
+  const RULES: Record<string, Rule> = {
+    name: {
+      message: 'Please enter your name so I know who I’m talking to.',
+      test: (v) => v.trim().length >= 2,
+    },
+    email: {
+      message: 'Please enter a valid email address so I can reply.',
+      test: (v) => EMAIL_RE.test(v.trim()),
+    },
+    suburb: {
+      message: 'Please tell me your suburb or area so I know if I cover it.',
+      test: (v) => v.trim().length >= 2,
+    },
+    phone: {
+      message: 'That number doesn’t look right — or leave it blank.',
+      // Optional: blank passes. Otherwise expect a plausible SA-style number.
+      test: (v) => v.trim() === '' || /^[+\d][\d\s()-]{7,}$/.test(v.trim()),
+    },
+  };
+
+  document.querySelectorAll<HTMLFormElement>('[data-enquiry-form]').forEach((form) => {
+    const wrap = form.closest('.form-wrap');
+    const status = form.querySelector<HTMLElement>('[data-status]');
+    const success = wrap?.querySelector<HTMLElement>('[data-success]');
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
+    const submitLabel = form.querySelector<HTMLElement>('[data-submit-label]');
+
+    const fieldFor = (name: string) =>
+      form.querySelector<HTMLInputElement>(`[name="${name}"]`);
+
+    const errorFor = (name: string) =>
+      form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+
+    const validate = (name: string): boolean => {
+      const input = fieldFor(name);
+      const error = errorFor(name);
+      const rule = RULES[name];
+      if (!input || !error || !rule) return true;
+
+      const ok = rule.test(input.value);
+      error.textContent = ok ? '' : rule.message;
+      error.hidden = ok;
+      input.setAttribute('aria-invalid', String(!ok));
+      return ok;
+    };
+
+    // Validate on blur, then live-correct once a field is already in error —
+    // so people are told they've fixed it without being nagged as they type.
+    Object.keys(RULES).forEach((name) => {
+      const input = fieldFor(name);
+      if (!input) return;
+
+      input.addEventListener('blur', () => validate(name));
+      input.addEventListener('input', () => {
+        if (input.getAttribute('aria-invalid') === 'true') validate(name);
+      });
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!status || !submit || !submitLabel) return;
+
+      status.hidden = true;
+      status.textContent = '';
+
+      const names = Object.keys(RULES);
+      const results = names.map(validate);
+
+      if (results.includes(false)) {
+        const firstBad = names[results.indexOf(false)];
+        fieldFor(firstBad)?.focus();
+        status.textContent = 'Please check the highlighted fields above.';
+        status.hidden = false;
+        return;
+      }
+
+      const data = new FormData(form);
+      const key = String(data.get('access_key') ?? '');
+
+      if (key.startsWith('REPLACE_WITH')) {
+        status.textContent =
+          'This form isn’t connected yet. Add the Web3Forms access key to enable sending.';
+        status.hidden = false;
+        return;
+      }
+
+      submit.disabled = true;
+      submitLabel.textContent = 'Sending…';
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data,
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (response.ok && result.success) {
+          // Swap the form out for the confirmation and move focus there so
+          // screen-reader and keyboard users land on the good news.
+          form.hidden = true;
+          const head = wrap?.querySelector<HTMLElement>('.form-head');
+          if (head) head.hidden = true;
+          if (success) {
+            success.hidden = false;
+            success.setAttribute('tabindex', '-1');
+            success.focus();
+          }
+          return;
+        }
+
+        throw new Error(result.message || 'Request failed');
+      } catch {
+        // Never clear the form on failure — their typing is preserved.
+        status.textContent =
+          'Sorry, something went wrong sending that. Please try again, or email carolynkr007@gmail.com directly.';
+        status.hidden = false;
+      } finally {
+        submit.disabled = false;
+        submitLabel.textContent = 'Send my enquiry';
+      }
+    });
+  });
+</script>
