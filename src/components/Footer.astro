@@ -6,69 +6,6 @@ const year = new Date().getFullYear();
 const socials = Object.entries(site.social).filter(([, url]) => url);
 ---
 
-<footer class="footer">
-  <div class="container footer__inner">
-    <div class="footer__brand">
-      <Logo variant="inverse" />
-      <p class="footer__blurb">
-        Professional decluttering and home organising in {site.area.label}.
-        Turning everyday chaos into calm, functional spaces.
-      </p>
-    </div>
-
-    <nav class="footer__col" aria-label="Footer">
-      <h2 class="footer__heading">Explore</h2>
-      <ul class="footer__list">
-        {nav.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
-        ))}
-      </ul>
-    </nav>
-
-    <div class="footer__col">
-      <h2 class="footer__heading">Services</h2>
-      <ul class="footer__list">
-        {services.map((service) => (
-          <li><a href={`/services/#${service.id}`}>{service.title}</a></li>
-        ))}
-      </ul>
-    </div>
-
-    {/* NAP block — name, area, contact — present on every page for local SEO. */}
-    <div class="footer__col">
-      <h2 class="footer__heading">Get in touch</h2>
-      <address class="footer__address">
-        <span class="footer__name">{site.owner}</span>
-        <span class="footer__role">{site.role}</span>
-        <a href={`mailto:${site.email}`}>{site.email}</a>
-        {site.phone.publish && (
-          <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
-        )}
-        <span class="footer__area">{site.area.label}, {site.area.region}</span>
-      </address>
-
-      {socials.length > 0 && (
-        <ul class="footer__social">
-          {socials.map(([platform, url]) => (
-            <li>
-              <a href={url} rel="noopener noreferrer" target="_blank">
-                <span class="footer__social-label">
-                  {platform.charAt(0).toUpperCase() + platform.slice(1)}
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  </div>
-
-  <div class="container footer__bottom">
-    <p>&copy; {year} {site.name}. All rights reserved.</p>
-    <p class="footer__serving">Proudly serving {site.area.label}.</p>
-  </div>
-</footer>
-
 <style>
   .footer {
     background-color: var(--evergreen);
@@ -185,3 +122,65 @@ const socials = Object.entries(site.social).filter(([, url]) => url);
     }
   }
 </style>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <Logo variant="inverse" />
+      <p class="footer__blurb">
+        Professional decluttering and home organising in {site.area.label}.
+        Turning everyday chaos into calm, functional spaces.
+      </p>
+    </div>
+
+    <nav class="footer__col" aria-label="Footer">
+      <h2 class="footer__heading">Explore</h2>
+      <ul class="footer__list">
+        {nav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="footer__col">
+      <h2 class="footer__heading">Services</h2>
+      <ul class="footer__list">
+        {services.map((service) => (
+          <li><a href={`/services/#${service.id}`}>{service.title}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h2 class="footer__heading">Get in touch</h2>
+      <address class="footer__address">
+        <span class="footer__name">{site.owner}</span>
+        <span class="footer__role">{site.role}</span>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        {site.phone.publish && (
+          <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
+        )}
+        <span class="footer__area">{site.area.label}, {site.area.region}</span>
+      </address>
+
+      {socials.length > 0 && (
+        <ul class="footer__social">
+          {socials.map(([platform, url]) => (
+            <li>
+              <a href={url} rel="noopener noreferrer" target="_blank">
+                <span class="footer__social-label">
+                  {platform.charAt(0).toUpperCase() + platform.slice(1)}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>&copy; {year} {site.name}. All rights reserved.</p>
+    <p class="footer__serving">Proudly serving {site.area.label}.</p>
+  </div>
+</footer>

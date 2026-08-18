@@ -7,46 +7,6 @@ const isCurrent = (href: string) =>
   href === '/' ? path === '/' : path.startsWith(href);
 ---
 
-<header class="header" data-header>
-  <div class="container header__inner">
-    <a href="/" class="header__logo" aria-label="Simply Sorted — home">
-      <Logo />
-    </a>
-
-    <button
-      class="header__toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="primary-nav"
-      data-nav-toggle
-    >
-      <span class="visually-hidden">Menu</span>
-      <span class="header__bars" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </span>
-    </button>
-
-    <nav class="header__nav" id="primary-nav" aria-label="Primary" data-nav>
-      <ul class="header__list">
-        {nav.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class:list={['header__link', { 'is-current': isCurrent(item.href) }]}
-              aria-current={isCurrent(item.href) ? 'page' : undefined}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))}
-        <li class="header__cta-item">
-          <a href="/contact/" class="button header__cta">Get in touch</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
 <style>
   .header {
     position: sticky;
@@ -98,7 +58,6 @@ const isCurrent = (href: string) =>
     position: relative;
   }
 
-  /* Underline grows from the left rather than snapping in. */
   .header__link::after {
     content: '';
     position: absolute;
@@ -196,7 +155,6 @@ const isCurrent = (href: string) =>
     }
 
     .header__link {
-      /* Generous tap targets — this audience skews older. */
       padding-block: 1.15rem;
       border-block-end: 1px solid var(--border);
       font-size: var(--step-0);
@@ -222,6 +180,46 @@ const isCurrent = (href: string) =>
   }
 </style>
 
+<header class="header" data-header>
+  <div class="container header__inner">
+    <a href="/" class="header__logo" aria-label="Simply Sorted — home">
+      <Logo />
+    </a>
+
+    <button
+      class="header__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      data-nav-toggle
+    >
+      <span class="visually-hidden">Menu</span>
+      <span class="header__bars" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+
+    <nav class="header__nav" id="primary-nav" aria-label="Primary" data-nav>
+      <ul class="header__list">
+        {nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={['header__link', { 'is-current': isCurrent(item.href) }]}
+              aria-current={isCurrent(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+        <li class="header__cta-item">
+          <a href="/contact/" class="button header__cta">Get in touch</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 <script>
   const header = document.querySelector<HTMLElement>('[data-header]');
   const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
@@ -237,7 +235,6 @@ const isCurrent = (href: string) =>
       setOpen(toggle.getAttribute('aria-expanded') !== 'true');
     });
 
-    // Escape closes the menu and returns focus to the button.
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
         setOpen(false);
@@ -245,8 +242,6 @@ const isCurrent = (href: string) =>
       }
     });
 
-    // Reset state when resizing up into the desktop layout, otherwise the
-    // collapsed grid row would keep the desktop nav hidden.
     const desktop = window.matchMedia('(min-width: 56.0625rem)');
     desktop.addEventListener('change', (event) => {
       if (event.matches) setOpen(false);

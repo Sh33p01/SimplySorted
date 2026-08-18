@@ -8,102 +8,6 @@ const description =
   'Get in touch with Carolyn Kriel at Simply Sorted for decluttering, downsizing, deceased estates, pre-move packing and home staging in Centurion and Pretoria. Free, no-obligation enquiry.';
 ---
 
-<Base title={title} description={description}>
-  <section class="section--tight page-head">
-    <div class="container container--narrow text-center">
-      <p class="eyebrow">Contact us</p>
-      <h1>Let’s talk about your space</h1>
-      <hr class="rule rule--center" />
-      <p class="lede">
-        Tell me a little about what’s bothering you and I’ll come back to you
-        {site.responseTime}. There’s no obligation, and nothing you say will
-        surprise me.
-      </p>
-    </div>
-  </section>
-
-  <section class="section contact">
-    <div class="container contact__inner">
-      <div class="contact__form">
-        <EnquiryForm variant="page" id="contact-form" headingLevel="h2" />
-      </div>
-
-      <aside class="contact__aside">
-        <div class="panel">
-          <h2 class="panel__title">Contact details</h2>
-          <address class="details">
-            <div class="detail">
-              <span class="detail__label">Name</span>
-              <span class="detail__value">{site.owner}</span>
-            </div>
-            <div class="detail">
-              <span class="detail__label">Role</span>
-              <span class="detail__value">{site.role}</span>
-            </div>
-            <div class="detail">
-              <span class="detail__label">Email</span>
-              <a class="detail__value" href={`mailto:${site.email}`}>{site.email}</a>
-            </div>
-            {site.phone.publish && (
-              <div class="detail">
-                <span class="detail__label">Phone</span>
-                <a class="detail__value" href={`tel:${site.phone.tel}`}>
-                  {site.phone.display}
-                </a>
-              </div>
-            )}
-            <div class="detail">
-              <span class="detail__label">Area served</span>
-              <span class="detail__value">{site.area.label}, {site.area.region}</span>
-            </div>
-          </address>
-
-          {site.phone.publish && (
-            <div class="panel__actions">
-              <a href={`tel:${site.phone.tel}`} class="button button--ghost">Call</a>
-              <a
-                href={`https://wa.me/${site.phone.whatsapp}`}
-                class="button button--ghost"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                WhatsApp
-              </a>
-            </div>
-          )}
-
-          {!site.phone.publish && (
-            <p class="panel__note">
-              {/* Remove once Carolyn confirms whether to publish a number —
-                  flip `phone.publish` in src/data/site.js. */}
-              Prefer to talk? Mention it in your message and I’ll call you back.
-            </p>
-          )}
-        </div>
-
-        <div class="panel">
-          <h2 class="panel__title">What I can help with</h2>
-          <ul class="panel__list">
-            {services.map((service) => (
-              <li><a href={`/services/#${service.id}`}>{service.title}</a></li>
-            ))}
-          </ul>
-        </div>
-
-        <div class="panel panel--quiet">
-          <h2 class="panel__title">Areas covered</h2>
-          <p class="panel__text">
-            Simply Sorted works throughout <strong>Centurion</strong> and
-            <strong>greater Pretoria</strong> — including Eldoraigne, Wierda Park,
-            Highveld, Irene, Lyttelton, Doringkloof and surrounding suburbs.
-            Not sure if you’re in range? Ask — I’ll happily tell you.
-          </p>
-        </div>
-      </aside>
-    </div>
-  </section>
-</Base>
-
 <style>
   .page-head {
     padding-block-start: var(--space-xl);
@@ -226,3 +130,97 @@ const description =
     }
   }
 </style>
+
+<Base title={title} description={description}>
+  <section class="section--tight page-head">
+    <div class="container container--narrow text-center">
+      <p class="eyebrow">Contact us</p>
+      <h1>Let’s talk about your space</h1>
+      <hr class="rule rule--center" />
+      <p class="lede">
+        Tell me a little about what’s bothering you and I’ll come back to you
+        {site.responseTime}. There’s no obligation, and nothing you say will
+        surprise me.
+      </p>
+    </div>
+  </section>
+
+  <section class="section contact">
+    <div class="container contact__inner">
+      <div class="contact__form">
+        <EnquiryForm variant="page" id="contact-form" headingLevel="h2" />
+      </div>
+
+      <aside class="contact__aside">
+        <div class="panel">
+          <h2 class="panel__title">Contact details</h2>
+          <address class="details">
+            <div class="detail">
+              <span class="detail__label">Name</span>
+              <span class="detail__value">{site.owner}</span>
+            </div>
+            <div class="detail">
+              <span class="detail__label">Role</span>
+              <span class="detail__value">{site.role}</span>
+            </div>
+            <div class="detail">
+              <span class="detail__label">Email</span>
+              <a class="detail__value" href={`mailto:${site.email}`}>{site.email}</a>
+            </div>
+            {site.phone.publish && (
+              <div class="detail">
+                <span class="detail__label">Phone</span>
+                <a class="detail__value" href={`tel:${site.phone.tel}`}>
+                  {site.phone.display}
+                </a>
+              </div>
+            )}
+            <div class="detail">
+              <span class="detail__label">Area served</span>
+              <span class="detail__value">{site.area.label}, {site.area.region}</span>
+            </div>
+          </address>
+
+          {site.phone.publish && (
+            <div class="panel__actions">
+              <a href={`tel:${site.phone.tel}`} class="button button--ghost">Call</a>
+              <a
+                href={`https://wa.me/${site.phone.whatsapp}`}
+                class="button button--ghost"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                WhatsApp
+              </a>
+            </div>
+          )}
+
+          {!site.phone.publish && (
+            <p class="panel__note">
+              Prefer to talk? Mention it in your message and I’ll call you back.
+            </p>
+          )}
+        </div>
+
+        <div class="panel">
+          <h2 class="panel__title">What I can help with</h2>
+          <ul class="panel__list">
+            {services.map((service) => (
+              <li><a href={`/services/#${service.id}`}>{service.title}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="panel panel--quiet">
+          <h2 class="panel__title">Areas covered</h2>
+          <p class="panel__text">
+            Simply Sorted works throughout <strong>Centurion</strong> and
+            <strong>greater Pretoria</strong> — including Eldoraigne, Wierda Park,
+            Highveld, Irene, Lyttelton, Doringkloof and surrounding suburbs.
+            Not sure if you’re in range? Ask — I’ll happily tell you.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>

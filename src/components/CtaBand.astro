@@ -16,17 +16,6 @@ const {
 } = Astro.props;
 ---
 
-<section class="section section--inverse cta">
-  <div class="container text-center">
-    <h2 class="cta__title reveal">{title}</h2>
-    <p class="cta__text reveal">{text}</p>
-    <div class="cta__actions reveal">
-      <a href={href} class="button button--on-dark">{buttonLabel}</a>
-      <a href={`mailto:${site.email}`} class="cta__email">{site.email}</a>
-    </div>
-  </div>
-</section>
-
 <style>
   .cta {
     padding-block: var(--space-2xl);
@@ -62,3 +51,14 @@ const {
     color: var(--linen);
   }
 </style>
+
+<section class="section section--inverse cta">
+  <div class="container text-center">
+    <h2 class="cta__title reveal">{title}</h2>
+    <p class="cta__text reveal">{text}</p>
+    <div class="cta__actions reveal">
+      <a href={href} class="button button--on-dark">{buttonLabel}</a>
+      <a href={`mailto:${site.email}`} class="cta__email">{site.email}</a>
+    </div>
+  </div>
+</section>

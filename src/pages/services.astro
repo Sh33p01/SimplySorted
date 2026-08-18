@@ -9,90 +9,13 @@ const description =
   'Four ways Simply Sorted helps Centurion and Pretoria homes: professional decluttering, downsizing and deceased estate support, pre-move decluttering and expert packing, and home staging for sale.';
 ---
 
-<Base title={title} description={description}>
-  <section class="section--tight page-head">
-    <div class="container container--narrow text-center">
-      <p class="eyebrow">Our Services</p>
-      <h1>Support at every stage</h1>
-      <hr class="rule rule--center" />
-      <p class="lede">
-        We know that managing your home and belongings can feel overwhelming.
-        Whether you are clearing out years of clutter, preparing for a major move,
-        or handling a loved one’s estate, our professional team is here to support
-        you every step of the way with care and respect.
-      </p>
-    </div>
-  </section>
-
-  {/* Jump links — lets someone go straight to the service that brought them. */}
-  <nav class="subnav" aria-label="Services">
-    <div class="container subnav__inner">
-      <ul class="subnav__list">
-        {services.map((service) => (
-          <li>
-            <a href={`#${service.id}`} class="subnav__link">{service.title}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </nav>
-
-  {services.map((service, index) => (
-    <section
-      id={service.id}
-      class:list={[
-        'section service',
-        { 'service--alt': index % 2 === 1, 'service--sensitive': service.sensitive },
-      ]}
-      aria-labelledby={`${service.id}-heading`}
-    >
-      <div class="container service__inner">
-        <div class="service__body reveal">
-          <span class="service__number" aria-hidden="true">{service.number}</span>
-          <h2 id={`${service.id}-heading`} class="service__title">{service.title}</h2>
-          <p class="service__tagline">{service.tagline}</p>
-          <hr class="rule" />
-
-          {service.body.map((paragraph) => (
-            <p class="service__text">{paragraph}</p>
-          ))}
-
-          <h3 class="service__includes-label">{service.includesLabel}</h3>
-          <ul class="service__includes">
-            {service.includes.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-
-          <a href="/contact/" class="button service__cta">
-            Enquire about {service.title.toLowerCase()}
-          </a>
-        </div>
-
-        <div class="service__media reveal">
-          <PlaceholderImage
-            label={`Photograph for ${service.title}`}
-            ratio="3 / 4"
-            tone={service.sensitive ? 'light' : 'mid'}
-          />
-        </div>
-      </div>
-    </section>
-  ))}
-
-  <CtaBand />
-</Base>
-
 <style>
   .page-head {
     padding-block-start: var(--space-xl);
   }
 
-  /* --- Sub-nav --- */
-
   .subnav {
     position: sticky;
-    /* Sits directly beneath the 5rem sticky site header. */
     top: 5rem;
     z-index: 60;
     background-color: rgba(251, 250, 247, 0.94);
@@ -129,14 +52,10 @@ const description =
     border-block-end-color: var(--sage);
   }
 
-  /* --- Service blocks --- */
-
   .service--alt {
     background-color: var(--bg-raised);
   }
 
-  /* The deceased-estates block gets more air and softer tone than the rest —
-     this is bereavement content, not just another service card. */
   .service--sensitive {
     background-color: var(--sand);
     padding-block: calc(var(--space-2xl) * 1.25);
@@ -149,7 +68,6 @@ const description =
     gap: clamp(2rem, 5vw, 4.5rem);
   }
 
-  /* Alternate the image side so the page doesn't read as four identical rows. */
   .service--alt .service__body {
     order: 2;
   }
@@ -253,3 +171,76 @@ const description =
     }
   }
 </style>
+
+<Base title={title} description={description}>
+  <section class="section--tight page-head">
+    <div class="container container--narrow text-center">
+      <p class="eyebrow">Our Services</p>
+      <h1>Support at every stage</h1>
+      <hr class="rule rule--center" />
+      <p class="lede">
+        We know that managing your home and belongings can feel overwhelming.
+        Whether you are clearing out years of clutter, preparing for a major move,
+        or handling a loved one’s estate, our professional team is here to support
+        you every step of the way with care and respect.
+      </p>
+    </div>
+  </section>
+
+  <nav class="subnav" aria-label="Services">
+    <div class="container subnav__inner">
+      <ul class="subnav__list">
+        {services.map((service) => (
+          <li>
+            <a href={`#${service.id}`} class="subnav__link">{service.title}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+
+  {services.map((service, index) => (
+    <section
+      id={service.id}
+      class:list={[
+        'section service',
+        { 'service--alt': index % 2 === 1, 'service--sensitive': service.sensitive },
+      ]}
+      aria-labelledby={`${service.id}-heading`}
+    >
+      <div class="container service__inner">
+        <div class="service__body reveal">
+          <span class="service__number" aria-hidden="true">{service.number}</span>
+          <h2 id={`${service.id}-heading`} class="service__title">{service.title}</h2>
+          <p class="service__tagline">{service.tagline}</p>
+          <hr class="rule" />
+
+          {service.body.map((paragraph) => (
+            <p class="service__text">{paragraph}</p>
+          ))}
+
+          <h3 class="service__includes-label">{service.includesLabel}</h3>
+          <ul class="service__includes">
+            {service.includes.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+
+          <a href="/contact/" class="button service__cta">
+            Enquire about {service.title.toLowerCase()}
+          </a>
+        </div>
+
+        <div class="service__media reveal">
+          <PlaceholderImage
+            label={`Photograph for ${service.title}`}
+            ratio="3 / 4"
+            tone={service.sensitive ? 'light' : 'mid'}
+          />
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CtaBand />
+</Base>

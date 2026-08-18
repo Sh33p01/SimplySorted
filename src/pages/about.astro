@@ -28,82 +28,6 @@ const values = [
 ];
 ---
 
-<Base title={title} description={description}>
-  {/* Founder-forward: people hire a person for in-home work, not a brand. */}
-  <section class="section intro">
-    <div class="container intro__inner">
-      <div class="intro__media reveal">
-        {/* TODO: replace with a warm, natural-light photo of Carolyn. */}
-        <PlaceholderImage
-          label="Photograph of Carolyn Kriel — warm, natural light, friendly and approachable"
-          ratio="4 / 5"
-          tone="mid"
-        />
-      </div>
-
-      <div class="intro__copy">
-        <p class="eyebrow">About us</p>
-        <h1 class="intro__title">Welcome to Simply Sorted.</h1>
-        <p class="intro__name">
-          <strong>{site.owner}</strong>
-          <span>{site.role} &middot; {site.area.label}</span>
-        </p>
-        <hr class="rule" />
-
-        <div class="prose">
-          <p>
-            Where we believe that a well-ordered home is the foundation for a
-            peaceful mind.
-          </p>
-          <p>
-            We have always had an innate passion for organizing, decluttering, and
-            transforming overwhelmed environments into harmonious sanctuaries. To us,
-            it’s about much more than just neat piles or matching bins, it’s about
-            breathing new life into your existing spaces, rethinking how you use every
-            square foot, and turning everyday chaos into calm, functional beauty.
-          </p>
-          <p>
-            Whether your closet is overflowing, your kitchen is crying out for a reset,
-            or an entire room needs a fresh start, we are here to partner with you.
-            Together, we will reclaim your space and create a tailored, beautiful
-            environment that feels effortless to maintain, allowing you to focus on
-            what truly matters.
-          </p>
-        </div>
-
-        <p class="intro__pull">Let’s turn your chaos into calm.</p>
-
-        <a href="/contact/" class="button intro__cta">Get in touch</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--raised">
-    <div class="container">
-      <div class="text-center values__head">
-        <p class="eyebrow">How we work</p>
-        <h2>What you can expect</h2>
-        <hr class="rule rule--center" />
-      </div>
-
-      <ul class="values">
-        {values.map((value) => (
-          <li class="value reveal">
-            <h3 class="value__title">{value.title}</h3>
-            <p class="value__text">{value.text}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <CtaBand
-    title="Ready when you are."
-    text="Tell me a little about the space that's bothering you. No judgement, no pressure — just a friendly chat about what would help."
-    buttonLabel="Start the conversation"
-  />
-</Base>
-
 <style>
   .intro {
     padding-block-start: var(--space-xl);
@@ -182,8 +106,6 @@ const values = [
     }
   }
 
-  /* --- Values --- */
-
   .values__head {
     margin-block-end: var(--space-xl);
   }
@@ -212,3 +134,77 @@ const values = [
     color: var(--text-muted);
   }
 </style>
+
+<Base title={title} description={description}>
+  <section class="section intro">
+    <div class="container intro__inner">
+      <div class="intro__media reveal">
+        <PlaceholderImage
+          label="Photograph of Carolyn Kriel — warm, natural light, friendly and approachable"
+          ratio="4 / 5"
+          tone="mid"
+        />
+      </div>
+
+      <div class="intro__copy">
+        <p class="eyebrow">About us</p>
+        <h1 class="intro__title">Welcome to Simply Sorted.</h1>
+        <p class="intro__name">
+          <strong>{site.owner}</strong>
+          <span>{site.role} &middot; {site.area.label}</span>
+        </p>
+        <hr class="rule" />
+
+        <div class="prose">
+          <p>
+            Where we believe that a well-ordered home is the foundation for a
+            peaceful mind.
+          </p>
+          <p>
+            We have always had an innate passion for organizing, decluttering, and
+            transforming overwhelmed environments into harmonious sanctuaries. To us,
+            it’s about much more than just neat piles or matching bins, it’s about
+            breathing new life into your existing spaces, rethinking how you use every
+            square foot, and turning everyday chaos into calm, functional beauty.
+          </p>
+          <p>
+            Whether your closet is overflowing, your kitchen is crying out for a reset,
+            or an entire room needs a fresh start, we are here to partner with you.
+            Together, we will reclaim your space and create a tailored, beautiful
+            environment that feels effortless to maintain, allowing you to focus on
+            what truly matters.
+          </p>
+        </div>
+
+        <p class="intro__pull">Let’s turn your chaos into calm.</p>
+
+        <a href="/contact/" class="button intro__cta">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--raised">
+    <div class="container">
+      <div class="text-center values__head">
+        <p class="eyebrow">How we work</p>
+        <h2>What you can expect</h2>
+        <hr class="rule rule--center" />
+      </div>
+
+      <ul class="values">
+        {values.map((value) => (
+          <li class="value reveal">
+            <h3 class="value__title">{value.title}</h3>
+            <p class="value__text">{value.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Ready when you are."
+    text="Tell me a little about the space that's bothering you. No judgement, no pressure — just a friendly chat about what would help."
+    buttonLabel="Start the conversation"
+  />
+</Base>

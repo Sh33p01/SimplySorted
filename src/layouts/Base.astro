@@ -7,7 +7,6 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
-  /** Set on the Home page only, so the org schema is declared exactly once. */
   includeSchema?: boolean;
 }
 
@@ -15,8 +14,6 @@ const { title, description, includeSchema = false } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
-// LocalBusiness schema — helps Google and AI answer engines place her
-// correctly for "declutter Centurion" style local queries.
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -82,7 +79,6 @@ const schema = {
     <meta property="og:locale" content="en_ZA" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Fonts: preconnect + swap so type never blocks first paint. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -104,8 +100,6 @@ const schema = {
     <Footer />
 
     <script>
-      // Gentle reveal on scroll. Reduced-motion users get no-op CSS, so this
-      // only ever adds a class they cannot perceive.
       const items = document.querySelectorAll('.reveal');
 
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
