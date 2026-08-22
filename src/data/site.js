@@ -11,7 +11,7 @@ export const site = {
   owner: 'Carolyn Kriel',
   role: 'Professional Organiser',
 
-  email: 'carolynkr007@gmail.com',
+  email: 'office.simplysorted@gmail.com',
 
   // PLACEHOLDER — confirm with Carolyn whether to publish a number at all.
   // Set `publish: false` to hide the call/WhatsApp buttons sitewide.

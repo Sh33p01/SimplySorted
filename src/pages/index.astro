@@ -90,15 +90,16 @@ const description =
 
   .card:hover {
     transform: translateY(-4px);
-    border-color: var(--sage);
+    border-color: var(--gold-soft);
     box-shadow: var(--shadow-md);
   }
 
   .card__number {
     font-family: var(--font-heading);
     font-size: var(--step-2);
-    color: var(--sage);
+    color: var(--gold-ink);
     line-height: 1;
+    letter-spacing: 0.04em;
   }
 
   .card__title {
@@ -149,11 +150,28 @@ const description =
   }
 
   .quote {
+    position: relative;
     max-width: 46rem;
     margin: 0 auto;
+    padding-block-start: var(--space-lg);
     padding-inline: var(--space-md);
     text-align: center;
-    border-inline-start: 2px solid var(--sage);
+  }
+
+  .quote::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7rem;
+    height: 2px;
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      var(--gold) 50%,
+      transparent
+    );
   }
 
   .quote p {
@@ -190,13 +208,13 @@ const description =
         <p class="eyebrow">{site.area.label}</p>
         <h1 class="hero__title">Turning everyday chaos into calm, functional spaces.</h1>
         <p class="hero__lede">
-          A well-ordered home is the foundation for a peaceful mind. I work alongside
+          A well-ordered home is the foundation for a peaceful mind. We work alongside
           you, at your pace, to reclaim your space — and set up systems that keep it
-          that way long after I leave.
+          that way long after we leave.
         </p>
         <div class="hero__actions">
           <a href="#enquiry" class="button">Get in touch</a>
-          <a href="/services/" class="button button--ghost">See what I do</a>
+          <a href="/services/" class="button button--ghost">See what we do</a>
         </div>
         <p class="hero__reassure">
           No judgement, no pressure — we work at your pace.

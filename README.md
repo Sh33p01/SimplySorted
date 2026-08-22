@@ -43,7 +43,7 @@ Each of these is marked with a `TODO` or `PLACEHOLDER` comment in the code.
 
 | Item | Where | Notes |
 | --- | --- | --- |
-| **Web3Forms access key** | `src/components/EnquiryForm.astro` | Sign up against `carolynkr007@gmail.com`, paste the key. Until then the form validates but shows a "not connected" notice instead of silently failing. |
+| **Web3Forms access key** | `src/components/EnquiryForm.astro` | Sign up against `office.simplysorted@gmail.com`, paste the key. Until then the form validates but shows a "not connected" notice instead of silently failing. |
 | **Final domain** | `astro.config.mjs`, `public/robots.txt` | Drives canonical URLs, sitemap and schema. Currently `simplysorted.co.za`. |
 | **Phone / WhatsApp** | `src/data/site.js` → `phone.publish` | Set to `true` once Carolyn confirms a number. Call + WhatsApp buttons and the schema `telephone` appear automatically. |
 | **Social links** | `src/data/site.js` → `social` | Empty strings are skipped in the footer. Fill in to show them. |

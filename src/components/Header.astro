@@ -65,7 +65,7 @@ const isCurrent = (href: string) =>
     bottom: 0;
     height: 1.5px;
     width: 100%;
-    background-color: var(--moss);
+    background-color: var(--gold);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform var(--duration) var(--ease);
@@ -76,11 +76,29 @@ const isCurrent = (href: string) =>
     transform: scaleX(1);
   }
 
-  .header__cta {
+  .header__link--cta {
     min-height: 2.6rem;
     padding: 0.5rem 1.4rem;
-    font-size: var(--step--1);
+    margin-inline-start: 0.25rem;
+    border-radius: 999px;
+    background-color: var(--accent);
+    color: var(--linen);
     letter-spacing: 0.04em;
+    transition: background-color var(--duration) var(--ease),
+                transform var(--duration) var(--ease),
+                box-shadow var(--duration) var(--ease);
+  }
+
+  .header__link--cta::after {
+    display: none;
+  }
+
+  .header__link--cta:hover,
+  .header__link--cta.is-current {
+    background-color: var(--accent-hover);
+    color: var(--linen);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
 
   .header__toggle {
@@ -168,14 +186,15 @@ const isCurrent = (href: string) =>
       color: var(--moss);
     }
 
-    .header__cta-item {
-      padding-block: var(--space-md) var(--space-lg);
-    }
-
-    .header__cta {
-      width: 100%;
+    .header__link--cta,
+    .header__link--cta.is-current {
+      margin-inline-start: 0;
+      margin-block-start: var(--space-md);
+      margin-block-end: var(--space-lg);
       min-height: 3rem;
-      font-size: var(--step-0);
+      border: none;
+      text-align: center;
+      color: var(--linen);
     }
   }
 </style>
@@ -205,16 +224,19 @@ const isCurrent = (href: string) =>
           <li>
             <a
               href={item.href}
-              class:list={['header__link', { 'is-current': isCurrent(item.href) }]}
+              class:list={[
+                'header__link',
+                {
+                  'is-current': isCurrent(item.href),
+                  'header__link--cta': item.href === '/contact/',
+                },
+              ]}
               aria-current={isCurrent(item.href) ? 'page' : undefined}
             >
               {item.label}
             </a>
           </li>
         ))}
-        <li class="header__cta-item">
-          <a href="/contact/" class="button header__cta">Get in touch</a>
-        </li>
       </ul>
     </nav>
   </div>

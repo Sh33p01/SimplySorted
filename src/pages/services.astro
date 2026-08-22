@@ -49,7 +49,7 @@ const description =
 
   .subnav__link:hover {
     color: var(--evergreen);
-    border-block-end-color: var(--sage);
+    border-block-end-color: var(--gold);
   }
 
   .service--alt {
@@ -57,7 +57,7 @@ const description =
   }
 
   .service--sensitive {
-    background-color: var(--sand);
+    background-color: var(--bg-raised);
     padding-block: calc(var(--space-2xl) * 1.25);
   }
 
@@ -75,12 +75,9 @@ const description =
   .service__number {
     font-family: var(--font-heading);
     font-size: var(--step-2);
-    color: var(--sage);
+    color: var(--gold-ink);
     line-height: 1;
-  }
-
-  .service--sensitive .service__number {
-    color: var(--moss);
+    letter-spacing: 0.04em;
   }
 
   .service__title {
@@ -132,15 +129,11 @@ const description =
     content: '';
     position: absolute;
     left: 0;
-    top: 0.62em;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background-color: var(--sage);
-  }
-
-  .service--sensitive .service__includes li::before {
-    background-color: var(--moss);
+    top: 0.6em;
+    width: 0.45rem;
+    height: 0.45rem;
+    transform: rotate(45deg);
+    background-color: var(--gold);
   }
 
   .service__cta {

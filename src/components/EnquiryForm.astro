@@ -77,7 +77,7 @@ const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro
   }
 
   .req {
-    color: var(--moss);
+    color: var(--gold-ink);
   }
 
   .optional {
@@ -183,7 +183,7 @@ const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro
     width: 3.5rem;
     height: 3.5rem;
     margin: 0 auto var(--space-sm);
-    color: var(--moss);
+    color: var(--gold);
   }
 
   .form-success__title {
@@ -202,7 +202,7 @@ const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro
   <div class="form-head">
     <Heading class="form-title">Contact us for organising &amp; decluttering services</Heading>
     <p class="form-sub">
-      No judgement, no pressure — we work at your pace. I’ll reply {site.responseTime}.
+      No judgement, no pressure — we work at your pace. We’ll reply {site.responseTime}.
     </p>
   </div>
 
@@ -285,12 +285,12 @@ const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro
     </div>
 
     <div class="field">
-      <label for={`${id}-message`}>How can I help?</label>
+      <label for={`${id}-message`}>How can we help?</label>
       <textarea
         id={`${id}-message`}
         name="message"
         rows={variant === 'card' ? 3 : 5}
-        placeholder="Tell me a little about the space you'd like sorted."
+        placeholder="Tell us a little about the space you'd like sorted."
       ></textarea>
     </div>
 
@@ -321,8 +321,8 @@ const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro
     </svg>
     <h3 class="form-success__title">Thank you — your message is on its way.</h3>
     <p class="form-success__text">
-      I’ve got your details and will reply {site.responseTime}.
-      If it’s urgent, email me directly at <a href={`mailto:${site.email}`}>{site.email}</a>.
+      We’ve got your details and will reply {site.responseTime}.
+      If it’s urgent, email us directly at <a href={`mailto:${site.email}`}>{site.email}</a>.
     </p>
   </div>
 </div>
@@ -334,15 +334,15 @@ const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro
 
   const RULES: Record<string, Rule> = {
     name: {
-      message: 'Please enter your name so I know who I’m talking to.',
+      message: 'Please enter your name so we know who we’re talking to.',
       test: (v) => v.trim().length >= 2,
     },
     email: {
-      message: 'Please enter a valid email address so I can reply.',
+      message: 'Please enter a valid email address so we can reply.',
       test: (v) => EMAIL_RE.test(v.trim()),
     },
     suburb: {
-      message: 'Please tell me your suburb or area so I know if I cover it.',
+      message: 'Please tell us your suburb or area so we know if we cover it.',
       test: (v) => v.trim().length >= 2,
     },
     phone: {
@@ -442,7 +442,7 @@ const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro
         throw new Error(result.message || 'Request failed');
       } catch {
         status.textContent =
-          'Sorry, something went wrong sending that. Please try again, or email carolynkr007@gmail.com directly.';
+          'Sorry, something went wrong sending that. Please try again, or email office.simplysorted@gmail.com directly.';
         status.hidden = false;
       } finally {
         submit.disabled = false;
