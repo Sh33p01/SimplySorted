@@ -25,6 +25,8 @@ const description =
 
   .subnav__list {
     display: flex;
+    justify-content: center;
+    justify-content: safe center;
     gap: var(--space-md);
     list-style: none;
     margin: 0;
@@ -32,6 +34,10 @@ const description =
     overflow-x: auto;
     scrollbar-width: thin;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .subnav__list > li {
+    flex-shrink: 0;
   }
 
   .subnav__link {

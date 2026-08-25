@@ -8,12 +8,10 @@
 export const site = {
   name: 'Simply Sorted',
   tagline: 'The art of everyday order',
-  owner: 'Carolyn Kriel',
-  role: 'Professional Organiser',
 
   email: 'office.simplysorted@gmail.com',
 
-  // PLACEHOLDER — confirm with Carolyn whether to publish a number at all.
+  // PLACEHOLDER — confirm whether to publish a number at all.
   // Set `publish: false` to hide the call/WhatsApp buttons sitewide.
   phone: {
     publish: false,

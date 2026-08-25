@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import EnquiryForm from '../components/EnquiryForm.astro';
 import PlaceholderImage from '../components/PlaceholderImage.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site, services } from '../data/site.js';
@@ -16,20 +15,19 @@ const description =
   }
 
   .hero__inner {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    align-items: center;
-    gap: clamp(2rem, 5vw, 4.5rem);
+    max-width: 50rem;
+    margin-inline: auto;
   }
 
   .hero__title {
     margin-block-start: var(--space-2xs);
-    max-width: 16ch;
+    margin-inline: auto;
+    max-width: 18ch;
   }
 
   .hero__lede {
     margin-block-start: var(--space-md);
-    max-width: 46ch;
+    max-width: 52ch;
     font-size: var(--step-1);
     line-height: 1.55;
     color: var(--text-muted);
@@ -38,6 +36,7 @@ const description =
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: var(--space-sm);
     margin-block-start: var(--space-lg);
   }
@@ -50,14 +49,10 @@ const description =
   }
 
   .hero__media {
-    margin-block-start: var(--space-2xl);
+    margin-block-start: var(--space-xl);
   }
 
   @media (max-width: 62rem) {
-    .hero__inner {
-      grid-template-columns: 1fr;
-    }
-
     .hero__media {
       margin-block-start: var(--space-lg);
     }
@@ -203,8 +198,8 @@ const description =
 
 <Base title={title} description={description} includeSchema>
   <section class="hero">
-    <div class="container hero__inner">
-      <div class="hero__copy">
+    <div class="container">
+      <div class="hero__inner text-center">
         <p class="eyebrow">{site.area.label}</p>
         <h1 class="hero__title">Turning everyday chaos into calm, functional spaces.</h1>
         <p class="hero__lede">
@@ -213,16 +208,12 @@ const description =
           that way long after we leave.
         </p>
         <div class="hero__actions">
-          <a href="#enquiry" class="button">Get in touch</a>
+          <a href="/contact/" class="button">Get in touch</a>
           <a href="/services/" class="button button--ghost">See what we do</a>
         </div>
         <p class="hero__reassure">
           No judgement, no pressure — we work at your pace.
         </p>
-      </div>
-
-      <div class="hero__form">
-        <EnquiryForm variant="card" id="enquiry" headingLevel="h2" />
       </div>
     </div>
 
@@ -284,14 +275,14 @@ const description =
       </div>
 
       <div class="proof">
-        <PlaceholderImage label="Before — a real client space, supplied by Carolyn" tone="light" />
+        <PlaceholderImage label="Before — a real client space" tone="light" />
         <PlaceholderImage label="After — the same space, sorted and systemised" tone="light" />
       </div>
 
       <blockquote class="quote reveal">
         <p>
-          “Placeholder for a client testimonial. Real quotes go here as Carolyn
-          collects them — social proof is decisive for a personal-trust service.”
+          “Placeholder for a client testimonial. Real quotes go here as they
+          come in — social proof is decisive for a personal-trust service.”
         </p>
         <cite>Client name, suburb</cite>
       </blockquote>
@@ -300,5 +291,8 @@ const description =
     </div>
   </section>
 
-  <CtaBand />
+  <CtaBand
+    showActions={false}
+    text="Whatever the room, whatever the reason — we make it feel calm again."
+  />
 </Base>

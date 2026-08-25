@@ -4,9 +4,9 @@ import CtaBand from '../components/CtaBand.astro';
 import PlaceholderImage from '../components/PlaceholderImage.astro';
 import { site } from '../data/site.js';
 
-const title = 'About Carolyn Kriel, Professional Organiser in Centurion | Simply Sorted';
+const title = 'About Simply Sorted | Professional Organisers in Centurion';
 const description =
-  'Meet Carolyn Kriel, the professional organiser behind Simply Sorted. A calm, respectful, judgement-free approach to decluttering and organising homes across Centurion and Pretoria.';
+  'Simply Sorted is a professional organising business serving Centurion and Pretoria. A calm, respectful, judgement-free approach to decluttering and organising homes.';
 
 const values = [
   {
@@ -140,7 +140,7 @@ const values = [
     <div class="container intro__inner">
       <div class="intro__media reveal">
         <PlaceholderImage
-          label="Photograph of Carolyn Kriel — warm, natural light, friendly and approachable"
+          label="Photograph of the team at work — warm, natural light, friendly and approachable"
           ratio="4 / 5"
           tone="mid"
         />
@@ -150,8 +150,8 @@ const values = [
         <p class="eyebrow">About us</p>
         <h1 class="intro__title">Welcome to Simply Sorted.</h1>
         <p class="intro__name">
-          <strong>{site.owner}</strong>
-          <span>{site.role} &middot; {site.area.label}</span>
+          <strong>{site.name}</strong>
+          <span>{site.tagline} &middot; {site.area.label}</span>
         </p>
         <hr class="rule" />
 

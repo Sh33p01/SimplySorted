@@ -25,11 +25,6 @@ const schema = {
   url: Astro.site?.href,
   email: site.email,
   ...(site.phone.publish ? { telephone: site.phone.tel } : {}),
-  founder: {
-    '@type': 'Person',
-    name: site.owner,
-    jobTitle: site.role,
-  },
   address: {
     '@type': 'PostalAddress',
     addressLocality: site.area.primary,

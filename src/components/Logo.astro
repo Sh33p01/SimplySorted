@@ -6,38 +6,67 @@ interface Props {
 }
 
 const { variant = 'default', showTagline = true, class: className = '' } = Astro.props;
-
-const markColor = variant === 'inverse' ? '#BFCFBB' : '#8EA58C';
-const textColor = variant === 'inverse' ? '#F4F1EB' : '#344C3D';
-const taglineColor = variant === 'inverse' ? '#BFCFBB' : '#738A6E';
 ---
 
 <style>
   .logo {
+    --mark-primary: var(--logo-primary);
+    --mark-accent: var(--logo-accent);
+    --mark-word: var(--logo-primary);
+
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.7rem;
     text-decoration: none;
     line-height: 1;
   }
 
+  .logo--inverse {
+    --mark-primary: var(--linen);
+    --mark-accent: var(--gold-light);
+    --mark-word: var(--linen);
+  }
+
   .logo__mark {
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 2.9rem;
+    height: 2.9rem;
     flex-shrink: 0;
+  }
+
+  .mark-line {
+    fill: none;
+    stroke: var(--mark-primary);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .mark-accent {
+    fill: none;
+    stroke: var(--mark-accent);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .mark-accent-fill {
+    fill: var(--mark-accent);
+    stroke: none;
   }
 
   .logo__text {
     display: flex;
     flex-direction: column;
-    gap: 0.18rem;
+    gap: 0.26rem;
+    color: var(--mark-word);
   }
 
   .logo__name {
-    font-family: var(--font-heading);
-    font-size: 1.55rem;
-    font-weight: 500;
-    letter-spacing: 0.005em;
+    font-family: var(--font-body);
+    font-size: 1.12rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     line-height: 1;
   }
 
@@ -45,57 +74,69 @@ const taglineColor = variant === 'inverse' ? '#BFCFBB' : '#738A6E';
     font-family: var(--font-body);
     font-size: 0.62rem;
     font-weight: 400;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.03em;
     line-height: 1;
+    opacity: 0.92;
   }
 
   @media (max-width: 26rem) {
+    .logo {
+      gap: 0.5rem;
+    }
+
     .logo__mark {
-      width: 2.1rem;
-      height: 2.1rem;
+      width: 2.3rem;
+      height: 2.3rem;
     }
 
     .logo__name {
-      font-size: 1.3rem;
+      font-size: 0.92rem;
+      letter-spacing: 0.16em;
     }
 
     .logo__tagline {
-      font-size: 0.55rem;
+      font-size: 0.54rem;
     }
   }
 </style>
 
-<span class:list={['logo', className]}>
+<span class:list={['logo', `logo--${variant}`, className]}>
   <svg
     class="logo__mark"
-    viewBox="0 0 64 64"
+    viewBox="0 0 100 100"
     role="img"
     aria-label="Simply Sorted"
     focusable="false"
   >
-    <path
-      d="M47.5 16.5c-4.6-4.9-11.4-7.2-18.2-6.3-7.9 1-14.2 6.4-15.6 13.4-1.3 6.6 2.4 12.3 9.7 15.4l9.6 4.1c4.6 2 6.7 4.6 6.1 7.6-.7 3.5-4.6 6-9.6 6.2-5.6.2-10.9-2.4-14.3-6.9"
-      fill="none"
-      stroke={markColor}
-      stroke-width="5.5"
-      stroke-linecap="round"
-    />
-    <path
-      d="M13.5 47.9c3.6 4.3 9.2 6.7 15.1 6.4"
-      fill="none"
-      stroke={markColor}
-      stroke-width="2"
-      stroke-linecap="round"
-      opacity="0.55"
-    />
+    <path class="mark-accent" d="M55 8 A48 48 0 0 1 93 65" />
+
+    <path class="mark-line" d="M2 24 L50 2 L50 64" />
+    <path class="mark-line" d="M2 24 L2 98 L48 98" />
+    <path class="mark-line" d="M2 62 L50 62" />
+
+    <path class="mark-line" d="M9 29 H38 V56 H9 Z" />
+    <path class="mark-line" d="M17 29 V56" />
+    <path class="mark-line" d="M25 29 V56" />
+    <path class="mark-accent" d="M18.6 31 H23.4 V54 H18.6 Z" stroke-width="2" />
+    <path class="mark-accent" d="M28.5 56 L33 30.5 L37.3 31.6 L32.8 57 Z" stroke-width="2" />
+
+    <path class="mark-line" d="M7 70 H37 a5.5 5.5 0 0 1 0 11 H13" />
+    <path class="mark-accent" d="M11 84 H33 a4.5 4.5 0 0 1 0 9 H17" />
+
+    <path class="mark-accent" d="M50 73 L71 55 L99 77" />
+    <path class="mark-accent" d="M50 73 V98" />
+    <path class="mark-accent" d="M92 71.5 V98" />
+    <path class="mark-accent" d="M54 98 H92" />
+    <rect class="mark-accent-fill" x="65" y="74" width="5" height="5" />
+    <rect class="mark-accent-fill" x="72" y="74" width="5" height="5" />
+    <rect class="mark-accent-fill" x="65" y="81" width="5" height="5" />
+    <rect class="mark-accent-fill" x="72" y="81" width="5" height="5" />
   </svg>
 
   <span class="logo__text">
-    <span class="logo__name" style={`color:${textColor}`}>Simply Sorted</span>
+    <span class="logo__name">Simply Sorted</span>
     {showTagline && (
-      <span class="logo__tagline" style={`color:${taglineColor}`}>
-        The art of everyday order
-      </span>
+      <span class="logo__tagline">The art of everyday order</span>
     )}
   </span>
 </span>

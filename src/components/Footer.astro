@@ -154,8 +154,7 @@ const socials = Object.entries(site.social).filter(([, url]) => url);
     <div class="footer__col">
       <h2 class="footer__heading">Get in touch</h2>
       <address class="footer__address">
-        <span class="footer__name">{site.owner}</span>
-        <span class="footer__role">{site.role}</span>
+        <span class="footer__name">{site.name}</span>
         <a href={`mailto:${site.email}`}>{site.email}</a>
         {site.phone.publish && (
           <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>

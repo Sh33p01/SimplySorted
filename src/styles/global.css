@@ -12,15 +12,6 @@
    So Evergreen carries every piece of text and every button. The lighter
    greens are structure and atmosphere. Two warm neutrals are added to give
    the greens somewhere to sit.
-
-   Gold is the luxury accent, in three roles — it is never a large fill, only
-   lines, marks, numerals and small caps:
-
-     Gold Ink   #705617  6.1:1 on linen, 6.6:1 on paper, 5.1:1 on sand
-                         — the only gold safe for small text (eyebrows, numerals)
-     Gold       #A9812F  3.2:1 on linen — rules, borders, bullets, never text
-     Gold Light #D9B87C  4.9:1 on evergreen — gold on the dark bands only
-                         (1.7:1 on linen, so never use it on a light surface)
    ========================================================================== */
 
 :root {
@@ -39,11 +30,15 @@
   --paper: #fbfaf7;
   --white: #ffffff;
 
-  /* --- Gold — see the contrast table at the top of this file. -------------- */
+  /* --- Gold --------------------------------------------------------------- */
   --gold-ink: #705617;
   --gold: #a9812f;
   --gold-light: #d9b87c;
   --gold-soft: rgba(169, 129, 47, 0.32);
+
+  /* --- Logo --------------------------------------------------------------- */
+  --logo-primary: #5c7f8e;
+  --logo-accent: #c89a62;
 
   /* --- Semantic roles ---------------------------------------------------- */
   --bg: var(--linen);
@@ -250,8 +245,6 @@ strong {
   background-color: var(--bg-raised);
 }
 
-/* Kept as a paper tone rather than the deeper sand — full-bleed sections stay
-   off-white and green; the warmer sand is reserved for small contained panels. */
 .section--sand {
   background-color: var(--bg-raised);
 }
@@ -278,8 +271,6 @@ strong {
    Shared components
    -------------------------------------------------------------------------- */
 
-/* Small caps above a heading — gold here is what carries the luxury note,
-   and it recurs on every section of every page. */
 .eyebrow {
   font-family: var(--font-body);
   font-size: var(--step--1);
@@ -334,8 +325,6 @@ strong {
   transform: translateY(0);
 }
 
-/* The secondary button is where gold does structural work: a thin gilt outline
-   around evergreen text, rather than another green-on-green shape. */
 .button--ghost {
   background-color: transparent;
   color: var(--evergreen);
@@ -358,9 +347,7 @@ strong {
   color: var(--evergreen);
 }
 
-/* A gold hairline used to punctuate section headings. It tapers rather than
-   stopping square — a hard-ended bar reads utilitarian, a fading one reads
-   like an engraved ornament, which is the whole point of the accent. */
+/* A short hairline used to punctuate section headings. */
 .rule {
   width: 4.5rem;
   height: 2px;
