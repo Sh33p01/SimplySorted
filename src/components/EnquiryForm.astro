@@ -5,12 +5,11 @@ const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_WEB3FORMS_ACCESS_KEY';
 const isConfigured = !WEB3FORMS_ACCESS_KEY.startsWith('REPLACE_WITH');
 
 interface Props {
-  variant?: 'card' | 'page';
   headingLevel?: 'h2' | 'h3';
   id?: string;
 }
 
-const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro.props;
+const { headingLevel: Heading = 'h2', id = 'enquiry' } = Astro.props;
 ---
 
 <style>
@@ -19,10 +18,6 @@ const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: clamp(1.5rem, 3vw, 2.5rem);
-    box-shadow: var(--shadow-md);
-  }
-
-  .form-wrap--page {
     box-shadow: var(--shadow-sm);
   }
 
@@ -58,10 +53,6 @@ const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-sm);
-  }
-
-  .form-wrap--card .field-row {
-    grid-template-columns: 1fr;
   }
 
   @media (max-width: 34rem) {
@@ -198,7 +189,7 @@ const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro
   }
 </style>
 
-<div class:list={['form-wrap', `form-wrap--${variant}`]} id={id}>
+<div class="form-wrap" id={id}>
   <div class="form-head">
     <Heading class="form-title">Contact us for organising &amp; decluttering services</Heading>
     <p class="form-sub">
@@ -289,7 +280,7 @@ const { variant = 'page', headingLevel: Heading = 'h2', id = 'enquiry' } = Astro
       <textarea
         id={`${id}-message`}
         name="message"
-        rows={variant === 'card' ? 3 : 5}
+        rows={5}
         placeholder="Tell us a little about the space you'd like sorted."
       ></textarea>
     </div>

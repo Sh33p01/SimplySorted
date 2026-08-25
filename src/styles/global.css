@@ -6,7 +6,6 @@
 
      Evergreen #344C3D  8.7:1   body text, headings, all CTAs
      Moss      #738A6E  3.5:1   large text 24px+, borders, icons only
-     Sage      #8EA58C  2.5:1   decorative fills only — never text
      Sage Hint #BFCFBB  1.4:1   decorative fills only — never text
 
    So Evergreen carries every piece of text and every button. The lighter
@@ -17,7 +16,6 @@
 :root {
   /* --- Client greens ----------------------------------------------------- */
   --sage-hint: #bfcfbb;
-  --sage: #8ea58c;
   --moss: #738a6e;
   --evergreen: #344c3d;
 
@@ -38,7 +36,6 @@
 
   /* --- Logo --------------------------------------------------------------- */
   --logo-primary: #5c7f8e;
-  --logo-accent: #c89a62;
 
   /* --- Semantic roles ---------------------------------------------------- */
   --bg: var(--linen);
@@ -245,10 +242,6 @@ strong {
   background-color: var(--bg-raised);
 }
 
-.section--sand {
-  background-color: var(--bg-raised);
-}
-
 .section--inverse {
   background-color: var(--bg-inverse);
   color: var(--text-inverse);
@@ -257,14 +250,6 @@ strong {
 .section--inverse h2,
 .section--inverse h3 {
   color: var(--linen);
-}
-
-.stack > * + * {
-  margin-block-start: var(--space-sm);
-}
-
-.stack-lg > * + * {
-  margin-block-start: var(--space-lg);
 }
 
 /* --------------------------------------------------------------------------

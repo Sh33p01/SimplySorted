@@ -1,11 +1,9 @@
 ---
 interface Props {
   variant?: 'default' | 'inverse';
-  showTagline?: boolean;
-  class?: string;
 }
 
-const { variant = 'default', showTagline = true, class: className = '' } = Astro.props;
+const { variant = 'default' } = Astro.props;
 ---
 
 <style>
@@ -96,7 +94,7 @@ const { variant = 'default', showTagline = true, class: className = '' } = Astro
   }
 </style>
 
-<span class:list={['logo', `logo--${variant}`, className]}>
+<span class:list={['logo', `logo--${variant}`]}>
   <span class="logo__badge">
     <span class="logo__mark">
       <img src="/logo.png" alt="" width="557" height="448" loading="eager" decoding="async" />
@@ -105,8 +103,6 @@ const { variant = 'default', showTagline = true, class: className = '' } = Astro
 
   <span class="logo__text">
     <span class="logo__name">Simply Sorted</span>
-    {showTagline && (
-      <span class="logo__tagline">The art of everyday order</span>
-    )}
+    <span class="logo__tagline">The art of everyday order</span>
   </span>
 </span>

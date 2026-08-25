@@ -2,23 +2,14 @@
 interface Props {
   label: string;
   ratio?: string;
-  tone?: 'light' | 'mid' | 'dark';
-  class?: string;
-  rounded?: boolean;
+  tone?: 'light' | 'mid';
 }
 
-const {
-  label,
-  ratio = '4 / 3',
-  tone = 'mid',
-  class: className = '',
-  rounded = true,
-} = Astro.props;
+const { label, ratio = '4 / 3', tone = 'mid' } = Astro.props;
 
 const tones = {
   light: { bg: '#E9EFE6', line: '#BFCFBB', ink: '#55684F' },
   mid: { bg: '#D6E0D2', line: '#8EA58C', ink: '#3D5340' },
-  dark: { bg: '#8EA58C', line: '#738A6E', ink: '#24362B' },
 };
 
 const t = tones[tone];
@@ -36,9 +27,6 @@ const t = tones[tone];
     margin: 0;
     padding: var(--space-md);
     overflow: hidden;
-  }
-
-  .ph--rounded {
     border-radius: var(--radius-lg);
   }
 
@@ -61,7 +49,7 @@ const t = tones[tone];
 </style>
 
 <figure
-  class:list={['ph', className, { 'ph--rounded': rounded }]}
+  class="ph"
   style={`aspect-ratio:${ratio}; background-color:${t.bg}; color:${t.ink};`}
   role="img"
   aria-label={`Placeholder image: ${label}`}
