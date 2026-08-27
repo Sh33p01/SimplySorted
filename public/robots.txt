@@ -1,5 +1,7 @@
+# TODO(launch): this is a pre-launch preview URL, kept out of search results
+# on purpose. On launch, swap Disallow for `Allow: /` and update the Sitemap
+# host to the final domain.
 User-agent: *
-Allow: /
+Disallow: /
 
-# TODO: update the host if the final domain differs.
-Sitemap: https://simplysorted.co.za/sitemap-index.xml
+Sitemap: https://simplysorted.office-simplysorted.workers.dev/sitemap-index.xml
