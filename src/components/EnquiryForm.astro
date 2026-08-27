@@ -1,8 +1,8 @@
 ---
 import { site, serviceOptions } from '../data/site.js';
 
-const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_WEB3FORMS_ACCESS_KEY';
-const isConfigured = !WEB3FORMS_ACCESS_KEY.startsWith('REPLACE_WITH');
+const WEB3FORMS_ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
+const isConfigured = WEB3FORMS_ACCESS_KEY !== '';
 
 interface Props {
   headingLevel?: 'h2' | 'h3';
@@ -197,7 +197,14 @@ const { headingLevel: Heading = 'h2', id = 'enquiry' } = Astro.props;
     </p>
   </div>
 
-  <form class="form" data-enquiry-form novalidate>
+  <form
+    class="form"
+    action="https://api.web3forms.com/submit"
+    method="POST"
+    data-fallback-email={site.email}
+    data-enquiry-form
+    novalidate
+  >
     <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
     <input type="hidden" name="subject" value="New enquiry from the Simply Sorted website" />
     <input type="hidden" name="from_name" value="Simply Sorted website" />
@@ -291,9 +298,9 @@ const { headingLevel: Heading = 'h2', id = 'enquiry' } = Astro.props;
 
     {!isConfigured && (
       <p class="form-notice">
-        <strong>Setup pending:</strong> add the Web3Forms access key in
-        <code>src/components/EnquiryForm.astro</code> to start delivering enquiries
-        to {site.email}.
+        <strong>Setup pending:</strong> set <code>PUBLIC_WEB3FORMS_KEY</code> in
+        <code>.env</code> (see <code>.env.example</code>) to start delivering
+        enquiries to {site.email}.
       </p>
     )}
 
@@ -399,7 +406,7 @@ const { headingLevel: Heading = 'h2', id = 'enquiry' } = Astro.props;
       const data = new FormData(form);
       const key = String(data.get('access_key') ?? '');
 
-      if (key.startsWith('REPLACE_WITH')) {
+      if (!key) {
         status.textContent =
           'This form isn’t connected yet. Add the Web3Forms access key to enable sending.';
         status.hidden = false;
@@ -432,8 +439,9 @@ const { headingLevel: Heading = 'h2', id = 'enquiry' } = Astro.props;
 
         throw new Error(result.message || 'Request failed');
       } catch {
+        const fallback = form.dataset.fallbackEmail ?? '';
         status.textContent =
-          'Sorry, something went wrong sending that. Please try again, or email office.simplysorted@gmail.com directly.';
+          `Sorry, something went wrong sending that. Please try again, or email ${fallback} directly.`;
         status.hidden = false;
       } finally {
         submit.disabled = false;
