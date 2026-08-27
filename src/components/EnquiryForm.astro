@@ -1,5 +1,5 @@
 ---
-import { site, serviceOptions } from '../data/site.js';
+import { site, services, serviceOptions } from '../data/site.js';
 
 const WEB3FORMS_ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
 const isConfigured = WEB3FORMS_ACCESS_KEY !== '';
@@ -277,7 +277,12 @@ const { headingLevel: Heading = 'h2', id = 'enquiry' } = Astro.props;
       <select id={`${id}-service`} name="service">
         <option value="">Please choose…</option>
         {serviceOptions.map((option) => (
-          <option value={option}>{option}</option>
+          <option
+            value={option}
+            data-service-id={services.find((s) => s.title === option)?.id}
+          >
+            {option}
+          </option>
         ))}
       </select>
     </div>
@@ -355,6 +360,15 @@ const { headingLevel: Heading = 'h2', id = 'enquiry' } = Astro.props;
     const success = wrap?.querySelector<HTMLElement>('[data-success]');
     const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
     const submitLabel = form.querySelector<HTMLElement>('[data-submit-label]');
+
+    const wantedService = new URLSearchParams(location.search).get('service');
+    if (wantedService) {
+      const select = form.querySelector<HTMLSelectElement>('select[name="service"]');
+      const match = select?.querySelector<HTMLOptionElement>(
+        `option[data-service-id="${CSS.escape(wantedService)}"]`
+      );
+      if (select && match) select.value = match.value;
+    }
 
     const fieldFor = (name: string) =>
       form.querySelector<HTMLInputElement>(`[name="${name}"]`);

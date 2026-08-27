@@ -225,7 +225,7 @@ const description =
             ))}
           </ul>
 
-          <a href="/contact/" class="button service__cta">
+          <a href={`/contact/?service=${service.id}`} class="button service__cta">
             Enquire about {service.title.toLowerCase()}
           </a>
         </div>
@@ -241,5 +241,5 @@ const description =
     </section>
   ))}
 
-  <CtaBand />
+  <CtaBand text="Whichever service fits, we shape it around your home and your pace." />
 </Base>

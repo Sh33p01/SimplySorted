@@ -4,17 +4,11 @@ import { site } from '../data/site.js';
 interface Props {
   title?: string;
   text?: string;
-  buttonLabel?: string;
-  href?: string;
-  showActions?: boolean;
 }
 
 const {
   title = 'Let’s turn your chaos into calm.',
-  text = `A free, no-obligation chat about your space - no judgement, no pressure. Serving ${site.area.label}.`,
-  buttonLabel = 'Book a free consultation',
-  href = '/contact/',
-  showActions = true,
+  text = `Serving ${site.area.label}.`,
 } = Astro.props;
 ---
 
@@ -33,25 +27,6 @@ const {
     max-width: 52ch;
     color: var(--sage-hint);
   }
-
-  .cta__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-md);
-    margin-block-start: var(--space-lg);
-  }
-
-  .cta__email {
-    color: var(--sage-hint);
-    font-size: var(--step--1);
-    text-underline-offset: 0.25em;
-  }
-
-  .cta__email:hover {
-    color: var(--gold-light);
-  }
 </style>
 
 <section class="section section--inverse cta">
@@ -59,11 +34,5 @@ const {
     <h2 class="cta__title reveal">{title}</h2>
     <hr class="rule rule--center reveal" />
     <p class="cta__text reveal">{text}</p>
-    {showActions && (
-      <div class="cta__actions reveal">
-        <a href={href} class="button button--on-dark">{buttonLabel}</a>
-        <a href={`mailto:${site.email}`} class="cta__email">{site.email}</a>
-      </div>
-    )}
   </div>
 </section>
