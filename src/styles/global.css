@@ -5,7 +5,7 @@
   --moss: #738a6e;
   --evergreen: #344c3d;
 
-  /* Darkened Evergreen for hover — keeps contrast climbing, never dropping. */
+  /* Darkened Evergreen for hover - keeps contrast climbing, never dropping. */
   --evergreen-deep: #24362b;
 
   /* --- Warm neutrals ----------------------------------------------------- */
@@ -29,7 +29,7 @@
   --bg-inverse: var(--evergreen);
 
   --text: var(--evergreen);
-  --text-muted: #55684f; /* 5.9:1 on linen — safe for small print */
+  --text-muted: #55684f; /* 5.9:1 on linen - safe for small print */
   --text-inverse: var(--linen);
 
   --accent: var(--evergreen);
@@ -44,7 +44,7 @@
   --font-heading: 'Cormorant Garamond', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
-  /* Fluid scale. Body floor is 17px — this audience skews older. */
+  /* Fluid scale. Body floor is 17px - this audience skews older. */
   --step--1: clamp(0.9rem, 0.86rem + 0.18vw, 1rem);
   --step-0: clamp(1.0625rem, 1.02rem + 0.22vw, 1.1875rem);
   --step-1: clamp(1.25rem, 1.16rem + 0.45vw, 1.5rem);
@@ -75,7 +75,7 @@
   --shadow-sm: 0 1px 2px rgba(52, 76, 61, 0.06), 0 2px 8px rgba(52, 76, 61, 0.05);
   --shadow-md: 0 2px 6px rgba(52, 76, 61, 0.07), 0 12px 32px rgba(52, 76, 61, 0.09);
 
-  /* Slow and soft — restraint is on-brand. */
+  /* Slow and soft - restraint is on-brand. */
   --ease: cubic-bezier(0.33, 0.05, 0.2, 1);
   --duration: 380ms;
 }
@@ -174,7 +174,7 @@ strong {
 }
 
 /* --------------------------------------------------------------------------
-   Focus — visible for keyboard users, quiet for mouse users
+   Focus - visible for keyboard users, quiet for mouse users
    -------------------------------------------------------------------------- */
 
 :focus-visible {
@@ -362,7 +362,7 @@ strong {
 }
 
 /* --------------------------------------------------------------------------
-   Scroll-in animation — gentle, and fully skipped for reduced-motion users
+   Scroll-in animation - gentle, and fully skipped for reduced-motion users
    -------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: no-preference) {

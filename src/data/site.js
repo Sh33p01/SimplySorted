@@ -1,7 +1,7 @@
 /**
  * Single source of truth for business details, nav and services.
  *
- * Anything marked PLACEHOLDER is waiting on the client — swap the value here
+ * Anything marked PLACEHOLDER is waiting on the client - swap the value here
  * and it updates across every page. Nothing else needs editing.
  */
 
@@ -11,7 +11,7 @@ export const site = {
 
   email: 'office.simplysorted@gmail.com',
 
-  // PLACEHOLDER — confirm whether to publish a number at all.
+  // PLACEHOLDER - confirm whether to publish a number at all.
   // Set `publish: false` to hide the call/WhatsApp buttons sitewide.
   phone: {
     publish: false,
@@ -31,7 +31,7 @@ export const site = {
   // Roughly central Centurion. Used only for LocalBusiness schema.
   geo: { lat: -25.8603, lng: 28.1894 },
 
-  // PLACEHOLDER — Kenan is creating these. Empty strings are skipped in the footer.
+  // PLACEHOLDER - Kenan is creating these. Empty strings are skipped in the footer.
   social: {
     facebook: '',
     instagram: '',
@@ -76,7 +76,7 @@ export const services = [
     title: 'Downsizing & Deceased Estates',
     tagline: 'Gentle, respectful transition support during life’s sensitive moments.',
     teaser: 'Unhurried, dignified help through downsizing and the estate of someone you have lost.',
-    // Handled with extra visual calm and space — see the brief's sensitivity note.
+    // Handled with extra visual calm and space - see the brief's sensitivity note.
     sensitive: true,
     body: [
       'Moving to a smaller home or managing the estate of a loved one who has passed away can be emotionally and physically exhausting. You do not have to handle it alone. We specialize in managing these delicate transitions with the utmost dignity, patience, and care.',
@@ -113,7 +113,7 @@ export const services = [
     number: '04',
     title: 'Home Staging',
     tagline: 'Maximize your property’s sale price using what you already own.',
-    teaser: 'Present your home at its best for sale — using the furniture you already have.',
+    teaser: 'Present your home at its best for sale - using the furniture you already have.',
     body: [
       'First impressions matter enormously when selling a property, but you do not need to spend thousands renting a house full of temporary furniture to attract buyers. Our home staging service focuses primarily on using your existing furniture, editing and arranging it strategically to showcase your property’s best features, maximize the perception of space, and create an instant emotional connection with potential buyers.',
       'We evaluate your property through the lens of a buyer. By decluttering, depersonalizing, and repurposing your own quality pieces, we make each room look light, spacious, and highly desirable. Our goal is to help your property stand out online and during inspections using your home’s unique potential, ensuring a faster sale and a premium market price.',
@@ -132,5 +132,5 @@ export const services = [
 /** Options for the enquiry form's service dropdown. */
 export const serviceOptions = [
   ...services.map((s) => s.title),
-  'Not sure yet — I’d like to talk it through',
+  'Not sure yet - I’d like to talk it through',
 ];
