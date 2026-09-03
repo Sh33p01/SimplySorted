@@ -1,7 +1,3 @@
-/**
- * Client-supplied photography, keyed for the places it appears.
- * Imported (not referenced from /public) so Astro optimises each one at build.
- */
 import hero from '../assets/hero.jpg';
 import aboutTeam from '../assets/about-us-team.jpg';
 import before from '../assets/before.jpg';
@@ -13,12 +9,6 @@ import homeStaging from '../assets/home-staging.jpg';
 
 export const photos = { hero, aboutTeam, before, after };
 
-/**
- * Keyed by `services[].id` in site.js. Typed as a record so the services page
- * can look a photo up by `service.id` without an implicit-any index error.
- *
- * @type {Record<string, { src: ImageMetadata; alt: string }>}
- */
 export const servicePhotos = {
   decluttering: {
     src: decluttering,
