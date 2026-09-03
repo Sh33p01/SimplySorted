@@ -7,9 +7,14 @@ import downsizingEstates from '../assets/downsizing-estates.jpg';
 import preMovePacking from '../assets/pre-move-packing.jpg';
 import homeStaging from '../assets/home-staging.jpg';
 
+export interface Photo {
+  src: ImageMetadata;
+  alt: string;
+}
+
 export const photos = { hero, aboutTeam, before, after };
 
-export const servicePhotos = {
+export const servicePhotos: Record<string, Photo> = {
   decluttering: {
     src: decluttering,
     alt: 'A cupboard sorted into neat, labelled sections with everything easy to reach.',

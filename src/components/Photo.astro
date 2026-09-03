@@ -19,7 +19,6 @@ const {
   position = 'center',
 } = Astro.props;
 
-// Cap the non-srcset fallback: several originals are 4000px wide.
 const maxWidth = Math.min(src.width, 1600);
 ---
 

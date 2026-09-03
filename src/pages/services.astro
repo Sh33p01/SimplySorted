@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Photo from '../components/Photo.astro';
 import { services } from '../data/site.js';
-import { servicePhotos } from '../data/photos.js';
+import { servicePhotos } from '../data/photos';
 
 const title = 'Decluttering, Downsizing, Packing & Home Staging in Centurion | Simply Sorted';
 const description =
@@ -163,7 +163,7 @@ const description =
 
     .service__media {
       position: static;
-      max-width: 22rem;
+      max-width: var(--measure);
     }
 
     .subnav {
