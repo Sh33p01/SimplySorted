@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  ratio?: string;
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  position?: string;
+}
+
+const {
+  src,
+  alt,
+  ratio = '4 / 3',
+  sizes = '(min-width: 62rem) 40rem, 92vw',
+  loading = 'lazy',
+  position = 'center',
+} = Astro.props;
+
+// Cap the non-srcset fallback: several originals are 4000px wide.
+const maxWidth = Math.min(src.width, 1600);
+---
+
+<style>
+  .photo {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background-color: #d6e0d2;
+  }
+
+  .photo :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+
+<figure class="photo" style={`aspect-ratio:${ratio};`}>
+  <Image
+    src={src}
+    alt={alt}
+    width={maxWidth}
+    widths={[480, 768, 1200, 1600].filter((w) => w <= maxWidth)}
+    sizes={sizes}
+    loading={loading}
+    decoding={loading === 'eager' ? 'sync' : 'async'}
+    fetchpriority={loading === 'eager' ? 'high' : 'auto'}
+    style={`object-position:${position};`}
+  />
+</figure>

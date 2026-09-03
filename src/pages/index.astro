@@ -1,8 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
-import PlaceholderImage from '../components/PlaceholderImage.astro';
+import Photo from '../components/Photo.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site, services } from '../data/site.js';
+import { site, services, testimonials } from '../data/site.js';
+import { photos } from '../data/photos.js';
 
 const title = 'Professional Decluttering & Home Organising in Centurion | Simply Sorted';
 const description =
@@ -14,20 +15,25 @@ const description =
     padding-block: clamp(2.5rem, 5vw, 4.5rem) var(--space-2xl);
   }
 
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+
   .hero__inner {
-    max-width: 50rem;
-    margin-inline: auto;
+    max-width: 34rem;
   }
 
   .hero__title {
     margin-block-start: var(--space-2xs);
-    margin-inline: auto;
-    max-width: 18ch;
+    max-width: 16ch;
   }
 
   .hero__lede {
     margin-block-start: var(--space-md);
-    max-width: 52ch;
+    max-width: 46ch;
     font-size: var(--step-1);
     line-height: 1.55;
     color: var(--text-muted);
@@ -36,7 +42,6 @@ const description =
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: var(--space-sm);
     margin-block-start: var(--space-lg);
   }
@@ -48,13 +53,30 @@ const description =
     font-style: italic;
   }
 
-  .hero__media {
-    margin-block-start: var(--space-xl);
-  }
-
   @media (max-width: 62rem) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+
+    .hero__inner {
+      max-width: 40rem;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .hero__title,
+    .hero__lede {
+      margin-inline: auto;
+    }
+
+    .hero__actions {
+      justify-content: center;
+    }
+
     .hero__media {
-      margin-block-start: var(--space-lg);
+      max-width: 24rem;
+      margin-inline: auto;
     }
   }
 
@@ -144,6 +166,19 @@ const description =
     margin-block: var(--space-xl) var(--space-xl);
   }
 
+  .proof__item {
+    margin: 0;
+  }
+
+  .proof__caption {
+    margin-block-start: var(--space-xs);
+    font-size: var(--step--1);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--text-muted);
+  }
+
   .quote {
     position: relative;
     max-width: 46rem;
@@ -188,18 +223,12 @@ const description =
     color: var(--text-muted);
   }
 
-  .proof__note {
-    margin-block-start: var(--space-xl);
-    font-size: var(--step--1);
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-  }
 </style>
 
 <Base title={title} description={description} includeSchema>
   <section class="hero">
-    <div class="container">
-      <div class="hero__inner text-center">
+    <div class="container hero__grid">
+      <div class="hero__inner">
         <p class="eyebrow">{site.area.label}</p>
         <h1 class="hero__title">Turning everyday chaos into calm, functional spaces.</h1>
         <p class="hero__lede">
@@ -215,14 +244,16 @@ const description =
           No judgement, no pressure - we work at your pace.
         </p>
       </div>
-    </div>
 
-    <div class="container hero__media">
-      <PlaceholderImage
-        label="Hero photograph - the client's supplied courtyard image, or a warm organised interior"
-        ratio="21 / 9"
-        tone="mid"
-      />
+      <div class="hero__media">
+        <Photo
+          src={photos.hero}
+          alt="A calm, beautifully organised home - the everyday order Simply Sorted creates."
+          ratio="4 / 5"
+          sizes="(min-width: 62rem) 32rem, 92vw"
+          loading="eager"
+        />
+      </div>
     </div>
   </section>
 
@@ -275,19 +306,32 @@ const description =
       </div>
 
       <div class="proof">
-        <PlaceholderImage label="Before - a real client space" tone="light" />
-        <PlaceholderImage label="After - the same space, sorted and systemised" tone="light" />
+        <figure class="proof__item reveal">
+          <Photo
+            src={photos.before}
+            alt="A client's space before Simply Sorted: crowded shelves with no clear system."
+            ratio="4 / 5"
+            sizes="(min-width: 62rem) 28rem, 92vw"
+          />
+          <figcaption class="proof__caption">Before</figcaption>
+        </figure>
+        <figure class="proof__item reveal">
+          <Photo
+            src={photos.after}
+            alt="The same space after Simply Sorted: sorted, grouped and easy to keep tidy."
+            ratio="4 / 5"
+            sizes="(min-width: 62rem) 28rem, 92vw"
+          />
+          <figcaption class="proof__caption">After</figcaption>
+        </figure>
       </div>
 
-      <blockquote class="quote reveal">
-        <p>
-          “Placeholder for a client testimonial. Real quotes go here as they
-          come in - social proof is decisive for a personal-trust service.”
-        </p>
-        <cite>Client name, suburb</cite>
-      </blockquote>
-
-      <p class="proof__note text-center">Proudly serving {site.area.label}.</p>
+      {testimonials.map((testimonial) => (
+        <blockquote class="quote reveal">
+          <p>&ldquo;{testimonial.quote}&rdquo;</p>
+          <cite>{testimonial.name}</cite>
+        </blockquote>
+      ))}
     </div>
   </section>
 

@@ -1,18 +1,9 @@
-/**
- * Single source of truth for business details, nav and services.
- *
- * Anything marked PLACEHOLDER is waiting on the client - swap the value here
- * and it updates across every page. Nothing else needs editing.
- */
-
 export const site = {
   name: 'Simply Sorted',
   tagline: 'The art of everyday order',
 
   email: 'office.simplysorted@gmail.com',
 
-  // PLACEHOLDER - confirm whether to publish a number at all.
-  // Set `publish: false` to hide the call/WhatsApp buttons sitewide.
   phone: {
     publish: false,
     display: '+27 00 000 0000',
@@ -28,10 +19,8 @@ export const site = {
     country: 'ZA',
   },
 
-  // Roughly central Centurion. Used only for LocalBusiness schema.
   geo: { lat: -25.8603, lng: 28.1894 },
 
-  // PLACEHOLDER - Kenan is creating these. Empty strings are skipped in the footer.
   social: {
     facebook: '',
     instagram: '',
@@ -40,6 +29,13 @@ export const site = {
   responseTime: 'within 1–2 business days',
 };
 
+export const testimonials = [
+  {
+    quote: 'Really professional and genuinely friendly. Couldn’t ask for more.',
+    name: 'Natasha',
+  },
+];
+
 export const nav = [
   { href: '/', label: 'Home' },
   { href: '/about/', label: 'About Us' },
@@ -47,10 +43,6 @@ export const nav = [
   { href: '/contact/', label: 'Contact Us' },
 ];
 
-/**
- * The four offerings. Copy is the client's, verbatim from her brief, with the
- * per-service "includes" headings she wrote preserved.
- */
 export const services = [
   {
     id: 'decluttering',
@@ -76,7 +68,6 @@ export const services = [
     title: 'Downsizing & Deceased Estates',
     tagline: 'Gentle, respectful transition support during life’s sensitive moments.',
     teaser: 'Unhurried, dignified help through downsizing and the estate of someone you have lost.',
-    // Handled with extra visual calm and space - see the brief's sensitivity note.
     sensitive: true,
     body: [
       'Moving to a smaller home or managing the estate of a loved one who has passed away can be emotionally and physically exhausting. You do not have to handle it alone. We specialize in managing these delicate transitions with the utmost dignity, patience, and care.',
@@ -129,7 +120,6 @@ export const services = [
   },
 ];
 
-/** Options for the enquiry form's service dropdown. */
 export const serviceOptions = [
   ...services.map((s) => s.title),
   'Not sure yet - I’d like to talk it through',

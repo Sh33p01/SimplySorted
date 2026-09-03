@@ -24,6 +24,15 @@ const description =
     gap: clamp(2rem, 4vw, 3.5rem);
   }
 
+  .contact__form {
+    align-self: stretch;
+    display: flex;
+  }
+
+  .contact__form > :global(.form-wrap) {
+    flex: 1;
+  }
+
   .contact__aside {
     display: flex;
     flex-direction: column;
@@ -42,6 +51,8 @@ const description =
   .panel--quiet {
     background-color: var(--sand);
     border-color: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
   }
 
   .panel__title {
@@ -127,6 +138,10 @@ const description =
 
     .contact__aside {
       position: static;
+    }
+
+    .contact__form {
+      display: block;
     }
   }
 </style>

@@ -1,0 +1,39 @@
+/**
+ * Client-supplied photography, keyed for the places it appears.
+ * Imported (not referenced from /public) so Astro optimises each one at build.
+ */
+import hero from '../assets/hero.jpg';
+import aboutTeam from '../assets/about-us-team.jpg';
+import before from '../assets/before.jpg';
+import after from '../assets/after.jpg';
+import decluttering from '../assets/decluttering.jpg';
+import downsizingEstates from '../assets/downsizing-estates.jpg';
+import preMovePacking from '../assets/pre-move-packing.jpg';
+import homeStaging from '../assets/home-staging.jpg';
+
+export const photos = { hero, aboutTeam, before, after };
+
+/**
+ * Keyed by `services[].id` in site.js. Typed as a record so the services page
+ * can look a photo up by `service.id` without an implicit-any index error.
+ *
+ * @type {Record<string, { src: ImageMetadata; alt: string }>}
+ */
+export const servicePhotos = {
+  decluttering: {
+    src: decluttering,
+    alt: 'A cupboard sorted into neat, labelled sections with everything easy to reach.',
+  },
+  'downsizing-estates': {
+    src: downsizingEstates,
+    alt: 'Belongings carefully grouped and boxed during a downsizing move.',
+  },
+  'pre-move-packing': {
+    src: preMovePacking,
+    alt: 'Packed and labelled moving boxes stacked ready for moving day.',
+  },
+  'home-staging': {
+    src: homeStaging,
+    alt: 'A living room styled for sale - uncluttered, light and welcoming.',
+  },
+};

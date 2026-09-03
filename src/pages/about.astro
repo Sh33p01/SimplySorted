@@ -1,8 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import CtaBand from '../components/CtaBand.astro';
-import PlaceholderImage from '../components/PlaceholderImage.astro';
+import Photo from '../components/Photo.astro';
 import { site } from '../data/site.js';
+import { photos } from '../data/photos.js';
 
 const title = 'About Simply Sorted | Professional Organisers in Centurion';
 const description =
@@ -135,10 +136,12 @@ const values = [
   <section class="section intro">
     <div class="container intro__inner">
       <div class="intro__media reveal">
-        <PlaceholderImage
-          label="Photograph of the team at work - warm, natural light, friendly and approachable"
+        <Photo
+          src={photos.aboutTeam}
+          alt="The Simply Sorted team at work in a client's home."
           ratio="4 / 5"
-          tone="mid"
+          sizes="(min-width: 62rem) 26rem, 92vw"
+          loading="eager"
         />
       </div>
 
