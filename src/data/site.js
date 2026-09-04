@@ -29,13 +29,6 @@ export const site = {
   responseTime: 'within 1–2 business days',
 };
 
-export const testimonials = [
-  {
-    quote: 'Really professional and genuinely friendly. Couldn’t ask for more.',
-    name: 'Natasha',
-  },
-];
-
 export const nav = [
   { href: '/', label: 'Home' },
   { href: '/about/', label: 'About Us' },

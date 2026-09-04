@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Photo from '../components/Photo.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site, services, testimonials } from '../data/site.js';
+import { site, services } from '../data/site.js';
 import { photos } from '../data/photos';
 
 const title = 'Professional Decluttering & Home Organising in Centurion | Simply Sorted';
@@ -179,50 +179,6 @@ const description =
     color: var(--text-muted);
   }
 
-  .quote {
-    position: relative;
-    max-width: 46rem;
-    margin: 0 auto;
-    padding-block-start: var(--space-lg);
-    padding-inline: var(--space-md);
-    text-align: center;
-  }
-
-  .quote::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 7rem;
-    height: 2px;
-    background-image: linear-gradient(
-      90deg,
-      transparent,
-      var(--gold) 50%,
-      transparent
-    );
-  }
-
-  .quote p {
-    font-family: var(--font-heading);
-    font-size: var(--step-2);
-    line-height: 1.4;
-    color: var(--text);
-    margin-inline: auto;
-  }
-
-  .quote cite {
-    display: block;
-    margin-block-start: var(--space-sm);
-    font-family: var(--font-body);
-    font-size: var(--step--1);
-    font-style: normal;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
 </style>
 
 <Base title={title} description={description} includeSchema>
@@ -309,8 +265,8 @@ const description =
         <figure class="proof__item reveal">
           <Photo
             src={photos.before}
-            alt="A client's space before Simply Sorted: crowded shelves with no clear system."
-            ratio="4 / 5"
+            alt="A living room before Simply Sorted: clothes piled by the door, shoes across the floor and shelves with no system."
+            ratio="1 / 1"
             sizes="(min-width: 62rem) 28rem, 92vw"
           />
           <figcaption class="proof__caption">Before</figcaption>
@@ -318,20 +274,13 @@ const description =
         <figure class="proof__item reveal">
           <Photo
             src={photos.after}
-            alt="The same space after Simply Sorted: sorted, grouped and easy to keep tidy."
-            ratio="4 / 5"
+            alt="The same living room after Simply Sorted: floor clear, belongings grouped into boxes and the shelves pared back."
+            ratio="1 / 1"
             sizes="(min-width: 62rem) 28rem, 92vw"
           />
           <figcaption class="proof__caption">After</figcaption>
         </figure>
       </div>
-
-      {testimonials.map((testimonial) => (
-        <blockquote class="quote reveal">
-          <p>&ldquo;{testimonial.quote}&rdquo;</p>
-          <cite>{testimonial.name}</cite>
-        </blockquote>
-      ))}
     </div>
   </section>
 
